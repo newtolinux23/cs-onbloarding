@@ -9,68 +9,192 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
-  :root{--ink:#1b2333;--muted:#5b6578;--line:#dfe3ea;--bg:#f5f7fa;--card:#fff;--brand:#1f4e8c;--brand2:#2f6fbf;--ok:#1f7a4d;--err:#b42318;--soft:#eef3fb}
+  :root{--ink:#1b2333;--muted:#5b6578;--line:#e3e8ef;--bg:#f3f6fa;--card:#fff;--brand:#1f4e8c;--brand2:#2f6fbf;--amber:#f2a900;--ok:#1f7a4d;--err:#b42318;--soft:#eef4fc}
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.45}
-  header{background:var(--brand);color:#fff;padding:18px 20px}
-  header .wrap{max-width:760px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
-  header h1{font-size:17px;margin:0;font-weight:700;letter-spacing:.3px}
-  header small{opacity:.8;font-size:12px}
-  main{max-width:760px;margin:0 auto;padding:18px 16px 60px}
-  .steps{display:flex;gap:6px;margin:4px 0 18px}
-  .steps div{flex:1;height:6px;border-radius:3px;background:var(--line)}
-  .steps div.on{background:var(--brand2)}
-  .steplabel{font-size:13px;color:var(--muted);margin-bottom:6px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
-  h2{font-size:21px;margin:0 0 4px}
+  /* ---- hero ---- */
+  .hero{position:relative;color:#fff;background:linear-gradient(180deg,#163b6d 0%,#1f4e8c 55%,#3a7bd0 100%);overflow:hidden}
+  .hero .top{position:relative;z-index:3;max-width:760px;margin:0 auto;padding:18px 20px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .hero h1{font-size:18px;margin:0;font-weight:800;letter-spacing:.2px}
+  .hero small{opacity:.85;font-size:12.5px}
+  .hero .tag{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:5px 11px;font-size:12px;font-weight:600;white-space:nowrap;backdrop-filter:blur(4px)}
+  .hero .title{position:relative;z-index:3;max-width:760px;margin:0 auto;padding:16px 20px 0}
+  .hero .title b{display:block;font-size:26px;font-weight:800;letter-spacing:-.3px;animation:rise .7s .15s both}
+  .hero .title span{opacity:.88;font-size:14.5px;animation:rise .7s .3s both;display:block}
+  .scene{position:relative;height:150px;margin-top:6px}
+  .sun{position:absolute;right:12%;top:8px;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle,#ffe08a,#f2a900);box-shadow:0 0 40px 12px rgba(242,169,0,.35);animation:glow 4s ease-in-out infinite alternate}
+  .cloud{position:absolute;height:18px;border-radius:20px;background:rgba(255,255,255,.75);filter:blur(.3px)}
+  .cloud::before,.cloud::after{content:"";position:absolute;background:inherit;border-radius:50%}
+  .cloud::before{width:26px;height:26px;left:10px;top:-12px}.cloud::after{width:20px;height:20px;left:30px;top:-8px}
+  .cl1{width:64px;top:22px;animation:drift 38s linear infinite}.cl2{width:52px;top:48px;animation:drift 52s linear infinite -20s;opacity:.6}.cl3{width:72px;top:12px;animation:drift 46s linear infinite -34s;opacity:.8}
+  .skyline{position:absolute;left:0;right:0;bottom:34px;height:52px;background-repeat:repeat-x;background-size:420px 52px;opacity:.35;animation:pan 30s linear infinite;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='52'%3E%3Cg fill='%230d2a52'%3E%3Crect x='0' y='22' width='34' height='30'/%3E%3Crect x='38' y='8' width='26' height='44'/%3E%3Crect x='68' y='28' width='40' height='24'/%3E%3Crect x='112' y='14' width='22' height='38'/%3E%3Crect x='140' y='30' width='60' height='22'/%3E%3Crect x='206' y='4' width='30' height='48'/%3E%3Crect x='240' y='24' width='44' height='28'/%3E%3Crect x='290' y='16' width='24' height='36'/%3E%3Crect x='318' y='32' width='54' height='20'/%3E%3Crect x='376' y='20' width='40' height='32'/%3E%3C/g%3E%3C/svg%3E")}
+  .road{position:absolute;left:0;right:0;bottom:0;height:36px;background:#232b3a;border-top:3px solid #3b4558}
+  .road::after{content:"";position:absolute;left:0;right:0;top:16px;height:4px;background:repeating-linear-gradient(90deg,#f2a900 0 34px,transparent 34px 70px);animation:dash .9s linear infinite}
+  .truckbox{position:absolute;z-index:2;bottom:16px;left:50%;width:min(250px,62vw);transform:translateX(-50%);animation:drivein 1.6s cubic-bezier(.2,.75,.25,1) both}
+  .truckbox .truck{width:100%;display:block;animation:bob .5s ease-in-out infinite alternate}
+  .puff{position:absolute;left:-6px;bottom:14px;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.55);animation:puff 1.2s ease-out infinite}
+  .puff:nth-child(2){animation-delay:.4s}.puff:nth-child(3){animation-delay:.8s}
+  .wheel{transform-box:fill-box;transform-origin:center;animation:spin .45s linear infinite}
+  .speed{position:absolute;left:-40px;height:2px;border-radius:2px;background:rgba(255,255,255,.6);animation:speed 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes bob{to{transform:translateY(-2px)}}
+  @keyframes dash{to{background-position:-70px 0}}
+  @keyframes pan{to{background-position:-420px 0}}
+  @keyframes drift{from{left:-90px}to{left:110%}}
+  @keyframes drivein{from{left:-40%}to{left:50%}}
+  @keyframes puff{from{transform:translate(0,0) scale(.6);opacity:.8}to{transform:translate(-34px,-16px) scale(2.2);opacity:0}}
+  @keyframes speed{from{transform:translateX(0);opacity:0}30%{opacity:1}to{transform:translateX(-60px);opacity:0}}
+  @keyframes glow{to{box-shadow:0 0 56px 18px rgba(242,169,0,.45)}}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @keyframes slidein{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+  @keyframes slideback{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+  @keyframes pop{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+  @keyframes fall{from{transform:translateY(-20px) rotate(0)}to{transform:translateY(520px) rotate(540deg);opacity:0}}
+  @keyframes driveoff{0%{transform:translateX(0)}20%{transform:translateX(-12px)}100%{transform:translateX(130vw)}}
+  /* ---- layout ---- */
+  main{max-width:760px;margin:-14px auto 0;padding:0 16px 60px;position:relative;z-index:4}
+  .track{position:relative;height:8px;background:#dde4ee;border-radius:8px;margin:34px 6px 8px}
+  .track .fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:linear-gradient(90deg,var(--brand2),var(--amber));transition:width .6s cubic-bezier(.2,.8,.2,1)}
+  .track .mini{position:absolute;top:-27px;width:44px;margin-left:-22px;transition:left .6s cubic-bezier(.2,.8,.2,1)}
+  .track .mini .truck{width:100%;display:block}
+  .track .dot{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;border:3px solid #dde4ee;transition:border-color .4s,background .4s}
+  .track .dot.on{border-color:var(--brand2);background:var(--brand2)}
+  .steplabel{font-size:13px;color:var(--muted);margin:0 0 12px 6px;font-weight:500}
+  .steplabel b{color:var(--ink)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 20px;box-shadow:0 10px 30px rgba(16,24,40,.07),0 1px 3px rgba(16,24,40,.05)}
+  section.fwd{animation:slidein .45s cubic-bezier(.2,.8,.2,1)}
+  section.bwd{animation:slideback .45s cubic-bezier(.2,.8,.2,1)}
+  h2{font-size:22px;margin:0 0 4px;letter-spacing:-.2px}
   .lead{color:var(--muted);margin:0 0 18px;font-size:14px}
-  h3{font-size:15px;margin:22px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
-  .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px 12px}
+  .lead a,.hint a{color:var(--brand2)}
+  h3{font-size:15px;margin:22px 0 10px;padding-top:16px;border-top:1px solid var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px 12px}
   .c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}
   @media (max-width:560px){.c4,.c3,.c2{grid-column:span 6}.c2.keep{grid-column:span 3}}
-  label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+  label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
   label .opt{font-weight:400;color:var(--muted)}
-  input,select,textarea{width:100%;font:inherit;font-size:16px;padding:11px 12px;border:1px solid #c9d0db;border-radius:9px;background:#fff;color:var(--ink)}
-  input:focus,select:focus{outline:2px solid var(--brand2);outline-offset:0;border-color:var(--brand2)}
-  .bad input,.bad select{border-color:var(--err);background:#fff8f7}
-  .msg{font-size:12px;color:var(--err);margin-top:4px;min-height:0}
-  .hint{font-size:12px;color:var(--muted);margin-top:4px}
-  .choice{display:flex;gap:10px;align-items:flex-start;border:1px solid #c9d0db;border-radius:10px;padding:12px;margin-bottom:8px;cursor:pointer;background:#fff}
-  .choice input{width:20px;height:20px;margin:1px 0 0;flex:none}
-  .choice:has(input:checked){border-color:var(--brand2);background:var(--soft)}
+  input,select,textarea{width:100%;font:inherit;font-size:16px;padding:12px 13px;border:1.5px solid #d3d9e3;border-radius:11px;background:#fff;color:var(--ink);transition:border-color .18s,box-shadow .18s,background .18s}
+  input:hover,select:hover{border-color:#b9c3d2}
+  input:focus,select:focus{outline:none;border-color:var(--brand2);box-shadow:0 0 0 4px rgba(47,111,191,.16)}
+  .bad input,.bad select{border-color:var(--err);background:#fff8f7;animation:shake .35s}
+  .msg{font-size:12px;color:var(--err);margin-top:5px;min-height:0}
+  .hint{font-size:12px;color:var(--muted);margin-top:5px}
+  .choice{display:flex;gap:11px;align-items:flex-start;border:1.5px solid #d3d9e3;border-radius:12px;padding:13px;margin-bottom:9px;cursor:pointer;background:#fff;transition:border-color .18s,background .18s,transform .12s,box-shadow .18s}
+  .choice:hover{border-color:#a9b8cf;transform:translateY(-1px);box-shadow:0 4px 10px rgba(16,24,40,.05)}
+  .choice input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--brand2)}
+  .choice:has(input:checked){border-color:var(--brand2);background:var(--soft);box-shadow:0 0 0 3px rgba(47,111,191,.12)}
   .choice span{font-size:14px}
   .bad .choice{border-color:var(--err)}
-  .row{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
-  button{font:inherit;font-weight:600;font-size:15px;border-radius:10px;padding:12px 20px;border:1px solid transparent;cursor:pointer}
-  .primary{background:var(--brand);color:#fff}.primary:hover{background:#173f73}
-  .ghost{background:#fff;border-color:#c9d0db;color:var(--ink)}
-  button:disabled{opacity:.55;cursor:default}
-  .note{background:var(--soft);border-radius:10px;padding:12px 14px;font-size:13px;color:#2b3a55;margin:0 0 16px}
-  .sigwrap{border:1.5px dashed #9aa7bb;border-radius:10px;background:#fbfcfe;position:relative;touch-action:none}
+  .row{display:flex;justify-content:space-between;gap:10px;margin-top:24px;align-items:center}
+  button{font:inherit;font-weight:700;font-size:15px;border-radius:12px;padding:13px 22px;border:1px solid transparent;cursor:pointer;transition:transform .12s,box-shadow .18s,background .18s}
+  button:active:not(:disabled){transform:scale(.97)}
+  .primary{background:linear-gradient(135deg,var(--brand2),var(--brand));color:#fff;box-shadow:0 6px 16px rgba(31,78,140,.28)}
+  .primary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 22px rgba(31,78,140,.32)}
+  .primary.go{background:linear-gradient(135deg,#f6bd2b,var(--amber));color:#1b2333;box-shadow:0 6px 16px rgba(242,169,0,.35)}
+  .ghost{background:#fff;border-color:#d3d9e3;color:var(--ink)}
+  button:disabled{opacity:.6;cursor:default}
+  .spinner{display:inline-block;width:15px;height:15px;border:2.5px solid rgba(0,0,0,.2);border-top-color:currentColor;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:8px}
+  .note{display:flex;gap:10px;background:var(--soft);border:1px solid #d6e4f7;border-radius:12px;padding:12px 14px;font-size:13px;color:#2b3a55;margin:0 0 18px}
+  .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 18px}
+  .perks div{background:#fafbfd;border:1px solid var(--line);border-radius:12px;padding:10px;font-size:12.5px;color:var(--muted);text-align:center;animation:rise .5s both}
+  .perks div:nth-child(2){animation-delay:.08s}.perks div:nth-child(3){animation-delay:.16s}
+  .perks b{display:block;font-size:18px;color:var(--ink);margin-bottom:2px}
+  .sigwrap{border:1.5px dashed #9aa7bb;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fafd);position:relative;touch-action:none}
   .sigwrap canvas{width:100%;height:170px;display:block;cursor:crosshair}
   .sigwrap .ph{position:absolute;left:14px;bottom:12px;font-size:13px;color:#98a2b3;pointer-events:none}
   .sigline{position:absolute;left:14px;right:14px;bottom:36px;border-bottom:1px solid #c7cfdb;pointer-events:none}
+  .sigline::before{content:"✕";position:absolute;left:0;bottom:2px;color:#b6c0cf;font-size:14px}
   .review{font-size:14px}
   .review dl{display:grid;grid-template-columns:minmax(120px,38%) 1fr;gap:6px 12px;margin:0}
   .review dt{color:var(--muted)}.review dd{margin:0;word-break:break-word}
-  .review h4{margin:16px 0 6px;font-size:14px;display:flex;justify-content:space-between}
-  .review h4 a{font-weight:500;font-size:13px;color:var(--brand2);cursor:pointer}
+  .review .rb{background:#fafbfd;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+  .review h4{margin:0 0 8px;font-size:14px;display:flex;justify-content:space-between}
+  .review h4 a{font-weight:600;font-size:13px;color:var(--brand2);cursor:pointer}
   .attest{font-size:13px}
-  .done{text-align:center;padding:40px 20px}
-  .done .tick{width:64px;height:64px;border-radius:50%;background:#e3f4ea;color:var(--ok);display:grid;place-items:center;margin:0 auto 14px;font-size:34px}
-  .err-banner{background:#fdecea;color:var(--err);border-radius:10px;padding:10px 14px;font-size:14px;margin-top:14px;display:none}
+  .done{text-align:center;padding:34px 20px 30px;position:relative;overflow:hidden}
+  .done .tick{width:84px;height:84px;margin:0 auto 14px;animation:pop .6s cubic-bezier(.2,.9,.3,1.3) both}
+  .done .tick circle{fill:#e3f4ea}
+  .done .tick path{fill:none;stroke:var(--ok);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw .5s .45s ease-out forwards}
+  .done h2{animation:rise .5s .5s both}.done .lead{animation:rise .5s .65s both}
+  .done .road2{position:relative;height:70px;margin:20px -20px -30px;overflow:hidden}
+  .done .road2::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22px;background:#232b3a}
+  .done .road2 .truck{position:absolute;bottom:12px;left:12%;width:150px;animation:driveoff 3.2s 1s cubic-bezier(.5,0,.75,0) forwards}
+  .confetti{position:absolute;top:0;width:8px;height:12px;border-radius:2px;animation:fall 2.6s ease-in forwards}
+  .bring{text-align:left;background:#fafbfd;border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:13.5px;margin:16px auto 0;max-width:480px;animation:rise .5s .8s both}
+  .err-banner{background:#fdecea;color:var(--err);border-radius:10px;padding:10px 14px;font-size:14px;margin-top:14px;display:none;animation:shake .4s}
   .hidden{display:none!important}
   .hp{position:absolute;left:-9999px}
   footer{max-width:760px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:12px;text-align:center}
   footer a{color:var(--muted)}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.done .tick path{stroke-dashoffset:0}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><div><h1>C &amp; S DELIVERY SERVICE INC.</h1><small>509 Gipson Manor Ct. · Crowley, Texas 76036</small></div><small>New hire paperwork</small></div></header>
+<header class="hero">
+  <div class="top"><div><h1>C &amp; S Delivery Service Inc.</h1><small>509 Gipson Manor Ct. · Crowley, Texas 76036</small></div><span class="tag">New hire paperwork</span></div>
+  <div class="title"><b>Let's get you on the road.</b><span>Direct deposit, W-4 and I-9 — all in one place, about 10 minutes.</span></div>
+  <div class="scene" aria-hidden="true">
+    <div class="sun"></div><div class="cloud cl1"></div><div class="cloud cl2"></div><div class="cloud cl3"></div>
+    <div class="skyline"></div><div class="road"></div>
+    <div class="truckbox"><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="speed" style="top:40%;width:26px"></span><span class="speed" style="top:60%;width:34px;animation-delay:.4s"></span><svg class="truck" viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="tb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e7edf6"/></linearGradient>
+    <linearGradient id="tc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6fbf"/><stop offset="1" stop-color="#1f4e8c"/></linearGradient>
+    <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe3ff"/><stop offset="1" stop-color="#8fb6e8"/></linearGradient>
+  </defs>
+  <ellipse cx="150" cy="122" rx="135" ry="6" fill="rgba(0,0,0,.18)"/>
+  <!-- cargo box -->
+  <rect x="8" y="8" width="186" height="92" rx="7" fill="url(#tb)" stroke="#c3cede" stroke-width="2"/>
+  <rect x="8" y="76" width="186" height="10" fill="#f2a900"/>
+  <rect x="8" y="86" width="186" height="6" fill="#1f4e8c"/>
+  <text x="101" y="44" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="27" fill="#1f4e8c" letter-spacing="1">C &amp; S</text>
+  <text x="101" y="63" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="11" fill="#5b6578" letter-spacing="3">DELIVERY SERVICE</text>
+  <!-- cab -->
+  <path d="M198 30 h44 c8 0 13 4 17 11 l18 30 c3 5 4 9 4 14 v15 h-83 z" fill="url(#tc)"/>
+  <path d="M208 38 h32 c4 0 7 2 9 6 l13 23 h-54 z" fill="url(#tg)"/>
+  <rect x="244" y="74" width="10" height="3" rx="1.5" fill="#dfe8f5"/>
+  <circle cx="279" cy="88" r="3.5" fill="#ffd166"/>
+  <rect x="194" y="96" width="92" height="6" rx="3" fill="#1b2333"/>
+  <rect x="2" y="96" width="196" height="6" rx="3" fill="#1b2333"/>
+  <!-- wheels -->
+  <g class="wheel"><circle cx="55" cy="103" r="15" fill="#1b2333"/><circle cx="55" cy="103" r="7" fill="#c9d3e3"/><path d="M55 96v14M48 103h14" stroke="#1b2333" stroke-width="2"/></g>
+  <g class="wheel"><circle cx="145" cy="103" r="15" fill="#1b2333"/><circle cx="145" cy="103" r="7" fill="#c9d3e3"/><path d="M145 96v14M138 103h14" stroke="#1b2333" stroke-width="2"/></g>
+  <g class="wheel"><circle cx="252" cy="103" r="15" fill="#1b2333"/><circle cx="252" cy="103" r="7" fill="#c9d3e3"/><path d="M252 96v14M245 103h14" stroke="#1b2333" stroke-width="2"/></g>
+</svg></div>
+  </div>
+</header>
 <main>
   <div id="progress">
+    <div class="track" id="track"><div class="fill" id="fill"></div><div class="mini" id="mini"><svg class="truck" viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="tb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e7edf6"/></linearGradient>
+    <linearGradient id="tc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6fbf"/><stop offset="1" stop-color="#1f4e8c"/></linearGradient>
+    <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe3ff"/><stop offset="1" stop-color="#8fb6e8"/></linearGradient>
+  </defs>
+  <ellipse cx="150" cy="122" rx="135" ry="6" fill="rgba(0,0,0,.18)"/>
+  <!-- cargo box -->
+  <rect x="8" y="8" width="186" height="92" rx="7" fill="url(#tb)" stroke="#c3cede" stroke-width="2"/>
+  <rect x="8" y="76" width="186" height="10" fill="#f2a900"/>
+  <rect x="8" y="86" width="186" height="6" fill="#1f4e8c"/>
+  <text x="101" y="44" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="27" fill="#1f4e8c" letter-spacing="1">C &amp; S</text>
+  <text x="101" y="63" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="11" fill="#5b6578" letter-spacing="3">DELIVERY SERVICE</text>
+  <!-- cab -->
+  <path d="M198 30 h44 c8 0 13 4 17 11 l18 30 c3 5 4 9 4 14 v15 h-83 z" fill="url(#tc)"/>
+  <path d="M208 38 h32 c4 0 7 2 9 6 l13 23 h-54 z" fill="url(#tg)"/>
+  <rect x="244" y="74" width="10" height="3" rx="1.5" fill="#dfe8f5"/>
+  <circle cx="279" cy="88" r="3.5" fill="#ffd166"/>
+  <rect x="194" y="96" width="92" height="6" rx="3" fill="#1b2333"/>
+  <rect x="2" y="96" width="196" height="6" rx="3" fill="#1b2333"/>
+  <!-- wheels -->
+  <g class="wheel"><circle cx="55" cy="103" r="15" fill="#1b2333"/><circle cx="55" cy="103" r="7" fill="#c9d3e3"/><path d="M55 96v14M48 103h14" stroke="#1b2333" stroke-width="2"/></g>
+  <g class="wheel"><circle cx="145" cy="103" r="15" fill="#1b2333"/><circle cx="145" cy="103" r="7" fill="#c9d3e3"/><path d="M145 96v14M138 103h14" stroke="#1b2333" stroke-width="2"/></g>
+  <g class="wheel"><circle cx="252" cy="103" r="15" fill="#1b2333"/><circle cx="252" cy="103" r="7" fill="#c9d3e3"/><path d="M252 96v14M245 103h14" stroke="#1b2333" stroke-width="2"/></g>
+</svg></div></div>
     <div class="steplabel" id="stepLabel"></div>
-    <div class="steps" id="stepBars"></div>
   </div>
 
   <form id="f" class="card" novalidate autocomplete="on">
@@ -80,7 +204,8 @@
     <section data-step="Your information">
       <h2>Welcome aboard</h2>
       <p class="lead">This takes about 10 minutes and replaces the paper Direct Deposit, W-4 and I-9 forms. Have your bank details and Social Security number ready.</p>
-      <div class="note">🔒 Your answers are sent securely and only C &amp; S HR can see them. You won't be able to view them again after submitting.</div>
+      <div class="perks"><div><b>📱</b>Works on your phone</div><div><b>✍️</b>Sign with your finger</div><div><b>⏱</b>About 10 minutes</div></div>
+      <div class="note"><span>🔒</span><span>Your answers are encrypted in transit and only C &amp; S HR can see them. You won't be able to view them again after submitting.</span></div>
       <div class="grid">
         <div class="c3"><label for="first">First name</label><input id="first" required autocomplete="given-name"></div>
         <div class="c3"><label for="last">Last name</label><input id="last" required autocomplete="family-name"></div>
@@ -92,7 +217,7 @@
         <div class="c2"><label for="city">City</label><input id="city" list="cityList" required autocomplete="address-level2" placeholder="Pick or type"><datalist id="cityList"></datalist></div>
         <div class="c2"><label for="zip">ZIP code</label><input id="zip" required inputmode="numeric" maxlength="10" autocomplete="postal-code" data-v="zip"></div>
         <div class="c3"><label for="dob">Date of birth</label><input id="dob" type="date" required autocomplete="bday" data-v="dob"></div>
-        <div class="c3"><label for="ssn">Social Security number</label><input id="ssn" required inputmode="numeric" maxlength="11" placeholder="123-45-6789" data-v="ssn" autocomplete="off"></div>
+        <div class="c3"><label for="ssn">Social Security number</label><input id="ssn" required inputmode="numeric" maxlength="11" placeholder="123-45-6789" data-v="ssn" autocomplete="off"><div class="hint">Required for your W-4 tax form.</div></div>
         <div class="c3"><label for="email">Email</label><input id="email" type="email" required autocomplete="email" data-v="email"></div>
         <div class="c3"><label for="phone">Phone</label><input id="phone" type="tel" required inputmode="tel" autocomplete="tel" data-v="phone" placeholder="(817) 555-0123"></div>
       </div>
@@ -147,7 +272,7 @@
     <!-- STEP 4 -->
     <section data-step="Work eligibility (I-9)" class="hidden">
       <h2>Employment eligibility (Form I-9, Section 1)</h2>
-      <p class="lead">Check the one box that describes your citizenship or immigration status. On your first day, bring original documents from the <a href="https://www.uscis.gov/i-9-central/form-i-9-acceptable-documents" target="_blank" rel="noopener">I-9 acceptable documents list</a> – you choose which ones.</p>
+      <p class="lead">Check the one box that describes your citizenship or immigration status. Read the <a href="https://www.uscis.gov/i-9" target="_blank" rel="noopener">official Form I-9 instructions</a> if you have questions. On your first day, bring <b>original</b> documents from the <a href="https://www.uscis.gov/i-9-central/form-i-9-acceptable-documents" target="_blank" rel="noopener">acceptable documents list</a> — you choose which ones: one from List A, <i>or</i> one from List B plus one from List C.</p>
       <div data-group="cit">
         <label class="choice"><input type="radio" name="cit" value="1_Citizen" required><span>1. A citizen of the United States</span></label>
         <label class="choice"><input type="radio" name="cit" value="2_NoncitizenNational"><span>2. A noncitizen national of the United States</span></label>
@@ -165,6 +290,8 @@
         <div class="c2"><label for="passport">Foreign passport no. &amp; country</label><input id="passport"></div>
         <div class="c6 msg" id="cit4msg"></div>
       </div>
+      <h3>Help with this form</h3>
+      <label class="choice"><input type="checkbox" id="preparer"><span>Someone helped me fill out or translate this form (HR will complete a short Preparer/Translator form with that person).</span></label>
     </section>
 
     <!-- STEP 5 -->
@@ -194,9 +321,35 @@
   </form>
 
   <div id="done" class="card done hidden">
-    <div class="tick">✓</div>
-    <h2>All set — thank you!</h2>
-    <p class="lead" style="margin-top:8px">Your paperwork was sent to C &amp; S HR. On your first day, bring your original I-9 documents (for example, a driver's license and Social Security card, or a U.S. passport).</p>
+    <svg class="tick" viewBox="0 0 84 84"><circle cx="42" cy="42" r="42"/><path d="M25 43l11 11 23-24"/></svg>
+    <h2>You're all set — welcome to the team!</h2>
+    <p class="lead" style="margin-top:8px">Your paperwork was sent to C &amp; S HR.</p>
+    <div class="bring"><b>Bring on your first day (originals, not copies):</b><br>• A U.S. passport or Permanent Resident Card, <b>or</b><br>• A driver's license or state ID <b>plus</b> a Social Security card or birth certificate</div>
+    <div class="road2" aria-hidden="true"><svg class="truck" viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="tb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e7edf6"/></linearGradient>
+    <linearGradient id="tc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6fbf"/><stop offset="1" stop-color="#1f4e8c"/></linearGradient>
+    <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe3ff"/><stop offset="1" stop-color="#8fb6e8"/></linearGradient>
+  </defs>
+  <ellipse cx="150" cy="122" rx="135" ry="6" fill="rgba(0,0,0,.18)"/>
+  <!-- cargo box -->
+  <rect x="8" y="8" width="186" height="92" rx="7" fill="url(#tb)" stroke="#c3cede" stroke-width="2"/>
+  <rect x="8" y="76" width="186" height="10" fill="#f2a900"/>
+  <rect x="8" y="86" width="186" height="6" fill="#1f4e8c"/>
+  <text x="101" y="44" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="27" fill="#1f4e8c" letter-spacing="1">C &amp; S</text>
+  <text x="101" y="63" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="11" fill="#5b6578" letter-spacing="3">DELIVERY SERVICE</text>
+  <!-- cab -->
+  <path d="M198 30 h44 c8 0 13 4 17 11 l18 30 c3 5 4 9 4 14 v15 h-83 z" fill="url(#tc)"/>
+  <path d="M208 38 h32 c4 0 7 2 9 6 l13 23 h-54 z" fill="url(#tg)"/>
+  <rect x="244" y="74" width="10" height="3" rx="1.5" fill="#dfe8f5"/>
+  <circle cx="279" cy="88" r="3.5" fill="#ffd166"/>
+  <rect x="194" y="96" width="92" height="6" rx="3" fill="#1b2333"/>
+  <rect x="2" y="96" width="196" height="6" rx="3" fill="#1b2333"/>
+  <!-- wheels -->
+  <g class="wheel"><circle cx="55" cy="103" r="15" fill="#1b2333"/><circle cx="55" cy="103" r="7" fill="#c9d3e3"/><path d="M55 96v14M48 103h14" stroke="#1b2333" stroke-width="2"/></g>
+  <g class="wheel"><circle cx="145" cy="103" r="15" fill="#1b2333"/><circle cx="145" cy="103" r="7" fill="#c9d3e3"/><path d="M145 96v14M138 103h14" stroke="#1b2333" stroke-width="2"/></g>
+  <g class="wheel"><circle cx="252" cy="103" r="15" fill="#1b2333"/><circle cx="252" cy="103" r="7" fill="#c9d3e3"/><path d="M252 96v14M245 103h14" stroke="#1b2333" stroke-width="2"/></g>
+</svg></div>
   </div>
 </main>
 <footer>C &amp; S Delivery Service Inc. · Questions? Contact HR. · <a href="hr.html">HR login</a></footer>
@@ -204,6 +357,8 @@
 <script>
 const SUPABASE_URL = "https://yxpjitdqqodfyqxvwglv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_jibRZ8TZlJvnEJGABG_Vbg_GGYHUhcg";
+// The SSN box on Form I-9 is voluntary unless the employer uses E-Verify. Set to true if C & S enrolls in E-Verify.
+const USE_EVERIFY = false;
 const STATES = [["AL", "Alabama"], ["AK", "Alaska"], ["AZ", "Arizona"], ["AR", "Arkansas"], ["CA", "California"], ["CO", "Colorado"], ["CT", "Connecticut"], ["DE", "Delaware"], ["DC", "District of Columbia"], ["FL", "Florida"], ["GA", "Georgia"], ["HI", "Hawaii"], ["ID", "Idaho"], ["IL", "Illinois"], ["IN", "Indiana"], ["IA", "Iowa"], ["KS", "Kansas"], ["KY", "Kentucky"], ["LA", "Louisiana"], ["ME", "Maine"], ["MD", "Maryland"], ["MA", "Massachusetts"], ["MI", "Michigan"], ["MN", "Minnesota"], ["MS", "Mississippi"], ["MO", "Missouri"], ["MT", "Montana"], ["NE", "Nebraska"], ["NV", "Nevada"], ["NH", "New Hampshire"], ["NJ", "New Jersey"], ["NM", "New Mexico"], ["NY", "New York"], ["NC", "North Carolina"], ["ND", "North Dakota"], ["OH", "Ohio"], ["OK", "Oklahoma"], ["OR", "Oregon"], ["PA", "Pennsylvania"], ["RI", "Rhode Island"], ["SC", "South Carolina"], ["SD", "South Dakota"], ["TN", "Tennessee"], ["TX", "Texas"], ["UT", "Utah"], ["VT", "Vermont"], ["VA", "Virginia"], ["WA", "Washington"], ["WV", "West Virginia"], ["WI", "Wisconsin"], ["WY", "Wyoming"]];
 const CITIES = {"AL": ["Auburn", "Birmingham", "Decatur", "Dothan", "Hoover", "Huntsville", "Madison", "Mobile", "Montgomery", "Tuscaloosa"], "AK": ["Anchorage", "Fairbanks", "Juneau", "Kenai", "Ketchikan", "Palmer", "Sitka", "Wasilla"], "AZ": ["Chandler", "Flagstaff", "Gilbert", "Glendale", "Mesa", "Peoria", "Phoenix", "Scottsdale", "Surprise", "Tempe", "Tucson", "Yuma"], "AR": ["Bentonville", "Conway", "Fayetteville", "Fort Smith", "Jonesboro", "Little Rock", "North Little Rock", "Pine Bluff", "Rogers", "Springdale"], "CA": ["Anaheim", "Bakersfield", "Chula Vista", "Fremont", "Fresno", "Irvine", "Long Beach", "Los Angeles", "Modesto", "Oakland", "Riverside", "Sacramento", "San Bernardino", "San Diego", "San Francisco", "San Jose", "Santa Ana", "Stockton"], "CO": ["Arvada", "Aurora", "Boulder", "Colorado Springs", "Denver", "Fort Collins", "Greeley", "Lakewood", "Pueblo", "Thornton", "Westminster"], "CT": ["Bridgeport", "Danbury", "Hartford", "New Britain", "New Haven", "Norwalk", "Stamford", "Waterbury"], "DE": ["Dover", "Middletown", "Milford", "Newark", "Smyrna", "Wilmington"], "DC": ["Washington"], "FL": ["Cape Coral", "Fort Lauderdale", "Gainesville", "Hialeah", "Hollywood", "Jacksonville", "Miami", "Orlando", "Pembroke Pines", "Pensacola", "Port St. Lucie", "St. Petersburg", "Tallahassee", "Tampa"], "GA": ["Albany", "Athens", "Atlanta", "Augusta", "Columbus", "Johns Creek", "Macon", "Marietta", "Roswell", "Sandy Springs", "Savannah"], "HI": ["Hilo", "Honolulu", "Kailua", "Kaneohe", "Kapolei", "Pearl City", "Waipahu"], "ID": ["Boise", "Caldwell", "Coeur d'Alene", "Idaho Falls", "Meridian", "Nampa", "Pocatello", "Twin Falls"], "IL": ["Aurora", "Champaign", "Chicago", "Cicero", "Elgin", "Joliet", "Naperville", "Peoria", "Rockford", "Springfield", "Waukegan"], "IN": ["Bloomington", "Carmel", "Evansville", "Fishers", "Fort Wayne", "Gary", "Hammond", "Indianapolis", "Lafayette", "South Bend"], "IA": ["Ames", "Ankeny", "Cedar Rapids", "Davenport", "Des Moines", "Iowa City", "Sioux City", "Waterloo", "West Des Moines"], "KS": ["Kansas City", "Lawrence", "Lenexa", "Manhattan", "Olathe", "Overland Park", "Salina", "Shawnee", "Topeka", "Wichita"], "KY": ["Bowling Green", "Covington", "Florence", "Georgetown", "Lexington", "Louisville", "Owensboro", "Richmond"], "LA": ["Alexandria", "Baton Rouge", "Bossier City", "Kenner", "Lafayette", "Lake Charles", "Monroe", "New Orleans", "Shreveport"], "ME": ["Auburn", "Augusta", "Bangor", "Biddeford", "Lewiston", "Portland", "South Portland"], "MD": ["Annapolis", "Baltimore", "Columbia", "Ellicott City", "Frederick", "Gaithersburg", "Germantown", "Rockville", "Silver Spring", "Waldorf"], "MA": ["Boston", "Brockton", "Cambridge", "Fall River", "Lowell", "Lynn", "New Bedford", "Quincy", "Springfield", "Worcester"], "MI": ["Ann Arbor", "Dearborn", "Detroit", "Flint", "Grand Rapids", "Kalamazoo", "Lansing", "Livonia", "Sterling Heights", "Troy", "Warren"], "MN": ["Bloomington", "Brooklyn Park", "Duluth", "Maple Grove", "Minneapolis", "Plymouth", "Rochester", "St. Cloud", "St. Paul", "Woodbury"], "MS": ["Biloxi", "Gulfport", "Hattiesburg", "Jackson", "Meridian", "Olive Branch", "Southaven", "Tupelo"], "MO": ["Columbia", "Independence", "Joplin", "Kansas City", "Lee's Summit", "O'Fallon", "Springfield", "St. Charles", "St. Joseph", "St. Louis"], "MT": ["Billings", "Bozeman", "Butte", "Great Falls", "Helena", "Kalispell", "Missoula"], "NE": ["Bellevue", "Fremont", "Grand Island", "Kearney", "Lincoln", "Norfolk", "Omaha"], "NV": ["Carson City", "Elko", "Henderson", "Las Vegas", "North Las Vegas", "Reno", "Sparks"], "NH": ["Concord", "Derry", "Dover", "Manchester", "Nashua", "Rochester", "Salem"], "NJ": ["Camden", "Edison", "Elizabeth", "Jersey City", "Lakewood", "Newark", "Paterson", "Toms River", "Trenton", "Woodbridge"], "NM": ["Albuquerque", "Clovis", "Farmington", "Hobbs", "Las Cruces", "Rio Rancho", "Roswell", "Santa Fe"], "NY": ["Albany", "Buffalo", "Mount Vernon", "New Rochelle", "New York", "Rochester", "Schenectady", "Syracuse", "Utica", "White Plains", "Yonkers"], "NC": ["Asheville", "Cary", "Charlotte", "Concord", "Durham", "Fayetteville", "Greensboro", "High Point", "Raleigh", "Wilmington", "Winston-Salem"], "ND": ["Bismarck", "Dickinson", "Fargo", "Grand Forks", "Minot", "West Fargo", "Williston"], "OH": ["Akron", "Canton", "Cincinnati", "Cleveland", "Columbus", "Dayton", "Hamilton", "Lorain", "Parma", "Toledo", "Youngstown"], "OK": ["Broken Arrow", "Edmond", "Enid", "Lawton", "Midwest City", "Moore", "Norman", "Oklahoma City", "Stillwater", "Tulsa"], "OR": ["Beaverton", "Bend", "Corvallis", "Eugene", "Gresham", "Hillsboro", "Medford", "Portland", "Salem", "Springfield"], "PA": ["Allentown", "Bethlehem", "Erie", "Harrisburg", "Lancaster", "Philadelphia", "Pittsburgh", "Reading", "Scranton", "York"], "RI": ["Cranston", "East Providence", "Newport", "Pawtucket", "Providence", "Warwick", "Woonsocket"], "SC": ["Charleston", "Columbia", "Greenville", "Mount Pleasant", "Myrtle Beach", "North Charleston", "Rock Hill", "Spartanburg", "Summerville"], "SD": ["Aberdeen", "Brookings", "Mitchell", "Pierre", "Rapid City", "Sioux Falls", "Watertown"], "TN": ["Chattanooga", "Clarksville", "Franklin", "Jackson", "Johnson City", "Knoxville", "Memphis", "Murfreesboro", "Nashville"], "TX": ["Crowley", "Abilene", "Amarillo", "Arlington", "Austin", "Beaumont", "Bedford", "Benbrook", "Brownsville", "Burleson", "Carrollton", "Cedar Hill", "Cleburne", "College Station", "Corpus Christi", "Dallas", "DeSoto", "Denton", "Duncanville", "El Paso", "Euless", "Everman", "Forest Hill", "Fort Worth", "Frisco", "Garland", "Granbury", "Grand Prairie", "Grapevine", "Haltom City", "Houston", "Hurst", "Irving", "Joshua", "Keller", "Kennedale", "Killeen", "Lancaster", "Laredo", "Lewisville", "Lubbock", "Mansfield", "McAllen", "McKinney", "Mesquite", "Midland", "Midlothian", "North Richland Hills", "Odessa", "Pasadena", "Plano", "Round Rock", "Saginaw", "San Angelo", "San Antonio", "Temple", "Tyler", "Waco", "Waxahachie", "Weatherford", "Wichita Falls"], "UT": ["Layton", "Lehi", "Logan", "Ogden", "Orem", "Provo", "Salt Lake City", "Sandy", "St. George", "West Jordan", "West Valley City"], "VT": ["Barre", "Burlington", "Essex Junction", "Montpelier", "Rutland", "South Burlington"], "VA": ["Alexandria", "Arlington", "Chesapeake", "Hampton", "Lynchburg", "Newport News", "Norfolk", "Portsmouth", "Richmond", "Roanoke", "Virginia Beach"], "WA": ["Bellevue", "Everett", "Federal Way", "Kent", "Kirkland", "Renton", "Seattle", "Spokane", "Spokane Valley", "Tacoma", "Vancouver", "Yakima"], "WV": ["Charleston", "Fairmont", "Huntington", "Morgantown", "Parkersburg", "Weirton", "Wheeling"], "WI": ["Appleton", "Eau Claire", "Green Bay", "Janesville", "Kenosha", "Madison", "Milwaukee", "Oshkosh", "Racine", "Waukesha"], "WY": ["Casper", "Cheyenne", "Gillette", "Green River", "Laramie", "Rock Springs", "Sheridan"]};
 
@@ -219,7 +374,7 @@ function fillCities() {
   const list = CITIES[$("state").value] || [];
   $("cityList").innerHTML = list.map(c => `<option value="${c.replace(/"/g, "&quot;")}">`).join("");
 }
-$("stepBars").innerHTML = sections.map(() => "<div></div>").join("");
+$("track").insertAdjacentHTML("beforeend", sections.map((_, k) => `<span class="dot" style="left:${k / (sections.length - 1) * 100}%"></span>`).join(""));
 
 // input masks
 $("ssn").addEventListener("input", e => { let d = e.target.value.replace(/\D/g, "").slice(0, 9); e.target.value = d.length > 5 ? `${d.slice(0,3)}-${d.slice(3,5)}-${d.slice(5)}` : d.length > 3 ? `${d.slice(0,3)}-${d.slice(3)}` : d; });
@@ -313,11 +468,16 @@ const sig = { has: false };
 
 // ---------- navigation ----------
 function show(i) {
-  step = i; sections.forEach((s, k) => s.classList.toggle("hidden", k !== i));
-  [...$("stepBars").children].forEach((b, k) => b.classList.toggle("on", k <= i));
-  $("stepLabel").textContent = `Step ${i + 1} of ${sections.length} · ${sections[i].dataset.step}`;
+  const dir = i >= step ? "fwd" : "bwd";
+  step = i; sections.forEach((s, k) => { s.classList.toggle("hidden", k !== i); s.classList.remove("fwd", "bwd"); });
+  void sections[i].offsetWidth; sections[i].classList.add(dir);
+  const pct = i / (sections.length - 1) * 100;
+  $("fill").style.width = pct + "%"; $("mini").style.left = pct + "%";
+  $("track").querySelectorAll(".dot").forEach((d, k) => d.classList.toggle("on", k <= i));
+  $("stepLabel").innerHTML = `Step ${i + 1} of ${sections.length} · <b>${sections[i].dataset.step.replace(/&/g, "&amp;")}</b>`;
   $("back").style.visibility = i ? "visible" : "hidden";
-  $("next").textContent = i === sections.length - 1 ? "Submit paperwork" : "Continue";
+  $("next").textContent = i === sections.length - 1 ? "Submit paperwork ✓" : "Continue →";
+  $("next").classList.toggle("go", i === sections.length - 1);
   $("errBanner").style.display = "none";
   if (i === sections.length - 1) { buildReview(); setTimeout(sig.size, 0); if (!$("typedName").value) $("typedName").value = [$("first").value, $("mi").value, $("last").value].filter(Boolean).join(" "); }
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -337,7 +497,7 @@ function collect() {
   const d = {
     I9_LastName: last, I9_FirstName: first, I9_MiddleInitial: mi, I9_OtherLastNames: t($("otherLast").value) || "N/A",
     I9_Address: t($("addr").value), I9_Apt: t($("apt").value) || "N/A", I9_City: t($("city").value), I9_State: $("state").value, I9_ZIP: t($("zip").value),
-    I9_DOB: isoToUS($("dob").value), I9_SSN: t($("ssn").value), I9_Email: t($("email").value), I9_Phone: t($("phone").value),
+    I9_DOB: isoToUS($("dob").value), I9_SSN: USE_EVERIFY ? t($("ssn").value) : "", I9_Email: t($("email").value), I9_Phone: t($("phone").value),
     I9_CitizenshipStatus: val("cit"), I9_EmployeeSignDate: date,
     DD_AccountType: val("acctType"), DD_BankName: t($("bank").value), DD_RoutingNumber: t($("routing").value), DD_AccountNumber: t($("acct").value),
     DD_EmployeeName: [first, mi && mi + ".", last].filter(Boolean).join(" "), DD_Email: t($("email").value), DD_Date: date,
@@ -351,15 +511,15 @@ function collect() {
     d.I9_AlienExpDate = isoToUS($("authExp").value) || "N/A";
     d.I9_AlienANumber = t($("aNum").value); d.I9_I94Number = t($("i94").value); d.I9_ForeignPassport = t($("passport").value);
   }
-  d._meta = { typed_name: t($("typedName").value), signed_at: new Date().toISOString(), user_agent: navigator.userAgent.slice(0, 200),
+  d._meta = { preparer: $("preparer").checked, typed_name: t($("typedName").value), signed_at: new Date().toISOString(), user_agent: navigator.userAgent.slice(0, 200),
               attest: { direct_deposit: $("agreeDD").checked, w4: $("agreeW4").checked, i9: $("agreeI9").checked, esign: $("agreeE").checked }, other_credits: s3.o };
   return d;
 }
 function buildReview() {
   const d = collect(), esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const blk = (title, k, rows) => `<h4>${title}<a data-go="${k}">Edit</a></h4><dl>${rows.filter(r => r[1]).map(r => `<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join("")}</dl>`;
+  const blk = (title, k, rows) => `<div class="rb"><h4>${title}<a data-go="${k}">Edit</a></h4><dl>${rows.filter(r => r[1]).map(r => `<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join("")}</dl></div>`;
   $("review").innerHTML =
-    blk("Your information", 0, [["Name", [d.I9_FirstName, d.I9_MiddleInitial, d.I9_LastName].filter(Boolean).join(" ")], ["Address", `${d.I9_Address}${d.I9_Apt !== "N/A" ? ", " + d.I9_Apt : ""}, ${d.I9_City}, ${d.I9_State} ${d.I9_ZIP}`], ["Date of birth", d.I9_DOB], ["SSN", mask(d.I9_SSN)], ["Email", d.I9_Email], ["Phone", d.I9_Phone]]) +
+    blk("Your information", 0, [["Name", [d.I9_FirstName, d.I9_MiddleInitial, d.I9_LastName].filter(Boolean).join(" ")], ["Address", `${d.I9_Address}${d.I9_Apt !== "N/A" ? ", " + d.I9_Apt : ""}, ${d.I9_City}, ${d.I9_State} ${d.I9_ZIP}`], ["Date of birth", d.I9_DOB], ["SSN", mask(d.W4_SSN)], ["Email", d.I9_Email], ["Phone", d.I9_Phone]]) +
     blk("Direct deposit", 1, [["Bank", `${d.DD_BankName} (${d.DD_AccountType})`], ["Routing", d.DD_RoutingNumber], ["Account", mask(d.DD_AccountNumber)]]) +
     blk("W-4", 2, [["Filing status", FILING[d.W4_FilingStatus]], ["Two jobs (2c)", d.W4_Step2c_TwoJobs ? "Yes" : ""], ["Step 3 credits", d.W4_Step3Total && "$" + d.W4_Step3Total], ["4(a) Other income", d.W4_Step4a && "$" + d.W4_Step4a], ["4(b) Deductions", d.W4_Step4b && "$" + d.W4_Step4b], ["4(c) Extra withholding", d.W4_Step4c && "$" + d.W4_Step4c], ["Exempt", d.W4_Exempt ? "Yes" : ""]]) +
     blk("I-9", 3, [["Status", CIT[d.I9_CitizenshipStatus]], ["USCIS/A-Number", d.I9_LPR_USCIS_ANumber || d.I9_AlienANumber], ["I-94", d.I9_I94Number], ["Passport", d.I9_ForeignPassport], ["Authorization expires", d.I9_AlienExpDate]]);
@@ -371,7 +531,7 @@ let client = null;
 try { client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } }); } catch (e) {}
 async function submit() {
   if (document.querySelector(".hp").value) { $("f").classList.add("hidden"); $("progress").classList.add("hidden"); $("done").classList.remove("hidden"); return; }
-  const btn = $("next"); btn.disabled = true; btn.textContent = "Submitting…"; $("errBanner").style.display = "none";
+  const btn = $("next"); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Submitting…'; $("errBanner").style.display = "none";
   try {
     if (!client) throw new Error("Couldn't load the secure connection. Check your internet and refresh the page.");
     const d = collect(), png = sig.png();
@@ -380,14 +540,19 @@ async function submit() {
       signatures: { employee: png },
     });
     if (error) throw new Error(error.message);
-    $("f").classList.add("hidden"); $("progress").classList.add("hidden"); $("done").classList.remove("hidden"); window.scrollTo(0, 0);
+    $("f").classList.add("hidden"); $("progress").classList.add("hidden"); $("done").classList.remove("hidden"); confetti(); window.scrollTo(0, 0);
   } catch (e) {
     $("errBanner").textContent = "Sorry — your paperwork didn't go through. " + (e.message || "") + " Please try again.";
-    $("errBanner").style.display = "block"; btn.disabled = false; btn.textContent = "Submit paperwork";
+    $("errBanner").style.display = "block"; btn.disabled = false; btn.textContent = "Submit paperwork ✓";
   }
 }
 window.addEventListener("beforeunload", e => { if (step > 0 && $("done").classList.contains("hidden")) { e.preventDefault(); e.returnValue = ""; } });
-show(0);
+function confetti() {
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const box = $("done"), colors = ["#2f6fbf", "#f2a900", "#1f7a4d", "#e85d75", "#7cc4ff"];
+  for (let k = 0; k < 60; k++) { const c = document.createElement("span"); c.className = "confetti"; c.style.left = Math.random() * 100 + "%"; c.style.background = colors[k % colors.length]; c.style.animationDelay = Math.random() * .6 + "s"; c.style.animationDuration = 2 + Math.random() * 1.5 + "s"; box.appendChild(c); setTimeout(() => c.remove(), 4500); }
+}
+step = 0; show(0);
 </script>
 </body>
 </html>

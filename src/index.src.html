@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>New Hire Paperwork – C &amp; S Delivery Service Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+  :root{--ink:#1b2333;--muted:#5b6578;--line:#e3e8ef;--bg:#f3f6fa;--card:#fff;--brand:#1f4e8c;--brand2:#2f6fbf;--amber:#f2a900;--ok:#1f7a4d;--err:#b42318;--soft:#eef4fc}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.45}
+  /* ---- hero ---- */
+  .hero{position:relative;color:#fff;background:linear-gradient(180deg,#163b6d 0%,#1f4e8c 55%,#3a7bd0 100%);overflow:hidden}
+  .hero .top{position:relative;z-index:3;max-width:760px;margin:0 auto;padding:18px 20px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .hero h1{font-size:18px;margin:0;font-weight:800;letter-spacing:.2px}
+  .hero small{opacity:.85;font-size:12.5px}
+  .hero .tag{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:5px 11px;font-size:12px;font-weight:600;white-space:nowrap;backdrop-filter:blur(4px)}
+  .hero .title{position:relative;z-index:3;max-width:760px;margin:0 auto;padding:16px 20px 0}
+  .hero .title b{display:block;font-size:26px;font-weight:800;letter-spacing:-.3px;animation:rise .7s .15s both}
+  .hero .title span{opacity:.88;font-size:14.5px;animation:rise .7s .3s both;display:block}
+  .scene{position:relative;height:150px;margin-top:6px}
+  .sun{position:absolute;right:12%;top:8px;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle,#ffe08a,#f2a900);box-shadow:0 0 40px 12px rgba(242,169,0,.35);animation:glow 4s ease-in-out infinite alternate}
+  .cloud{position:absolute;height:18px;border-radius:20px;background:rgba(255,255,255,.75);filter:blur(.3px)}
+  .cloud::before,.cloud::after{content:"";position:absolute;background:inherit;border-radius:50%}
+  .cloud::before{width:26px;height:26px;left:10px;top:-12px}.cloud::after{width:20px;height:20px;left:30px;top:-8px}
+  .cl1{width:64px;top:22px;animation:drift 38s linear infinite}.cl2{width:52px;top:48px;animation:drift 52s linear infinite -20s;opacity:.6}.cl3{width:72px;top:12px;animation:drift 46s linear infinite -34s;opacity:.8}
+  .skyline{position:absolute;left:0;right:0;bottom:34px;height:52px;background-repeat:repeat-x;background-size:420px 52px;opacity:.35;animation:pan 30s linear infinite;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='52'%3E%3Cg fill='%230d2a52'%3E%3Crect x='0' y='22' width='34' height='30'/%3E%3Crect x='38' y='8' width='26' height='44'/%3E%3Crect x='68' y='28' width='40' height='24'/%3E%3Crect x='112' y='14' width='22' height='38'/%3E%3Crect x='140' y='30' width='60' height='22'/%3E%3Crect x='206' y='4' width='30' height='48'/%3E%3Crect x='240' y='24' width='44' height='28'/%3E%3Crect x='290' y='16' width='24' height='36'/%3E%3Crect x='318' y='32' width='54' height='20'/%3E%3Crect x='376' y='20' width='40' height='32'/%3E%3C/g%3E%3C/svg%3E")}
+  .road{position:absolute;left:0;right:0;bottom:0;height:36px;background:#232b3a;border-top:3px solid #3b4558}
+  .road::after{content:"";position:absolute;left:0;right:0;top:16px;height:4px;background:repeating-linear-gradient(90deg,#f2a900 0 34px,transparent 34px 70px);animation:dash .9s linear infinite}
+  .truckbox{position:absolute;z-index:2;bottom:16px;left:50%;width:min(250px,62vw);transform:translateX(-50%);animation:drivein 1.6s cubic-bezier(.2,.75,.25,1) both}
+  .truckbox .truck{width:100%;display:block;animation:bob .5s ease-in-out infinite alternate}
+  .puff{position:absolute;left:-6px;bottom:14px;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.55);animation:puff 1.2s ease-out infinite}
+  .puff:nth-child(2){animation-delay:.4s}.puff:nth-child(3){animation-delay:.8s}
+  .wheel{transform-box:fill-box;transform-origin:center;animation:spin .45s linear infinite}
+  .speed{position:absolute;left:-40px;height:2px;border-radius:2px;background:rgba(255,255,255,.6);animation:speed 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes bob{to{transform:translateY(-2px)}}
+  @keyframes dash{to{background-position:-70px 0}}
+  @keyframes pan{to{background-position:-420px 0}}
+  @keyframes drift{from{left:-90px}to{left:110%}}
+  @keyframes drivein{from{left:-40%}to{left:50%}}
+  @keyframes puff{from{transform:translate(0,0) scale(.6);opacity:.8}to{transform:translate(-34px,-16px) scale(2.2);opacity:0}}
+  @keyframes speed{from{transform:translateX(0);opacity:0}30%{opacity:1}to{transform:translateX(-60px);opacity:0}}
+  @keyframes glow{to{box-shadow:0 0 56px 18px rgba(242,169,0,.45)}}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @keyframes slidein{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+  @keyframes slideback{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+  @keyframes pop{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+  @keyframes fall{from{transform:translateY(-20px) rotate(0)}to{transform:translateY(520px) rotate(540deg);opacity:0}}
+  @keyframes driveoff{0%{transform:translateX(0)}20%{transform:translateX(-12px)}100%{transform:translateX(130vw)}}
+  /* ---- layout ---- */
+  main{max-width:760px;margin:-14px auto 0;padding:0 16px 60px;position:relative;z-index:4}
+  .track{position:relative;height:8px;background:#dde4ee;border-radius:8px;margin:34px 6px 8px}
+  .track .fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:linear-gradient(90deg,var(--brand2),var(--amber));transition:width .6s cubic-bezier(.2,.8,.2,1)}
+  .track .mini{position:absolute;top:-27px;width:44px;margin-left:-22px;transition:left .6s cubic-bezier(.2,.8,.2,1)}
+  .track .mini .truck{width:100%;display:block}
+  .track .dot{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;border:3px solid #dde4ee;transition:border-color .4s,background .4s}
+  .track .dot.on{border-color:var(--brand2);background:var(--brand2)}
+  .steplabel{font-size:13px;color:var(--muted);margin:0 0 12px 6px;font-weight:500}
+  .steplabel b{color:var(--ink)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 20px;box-shadow:0 10px 30px rgba(16,24,40,.07),0 1px 3px rgba(16,24,40,.05)}
+  section.fwd{animation:slidein .45s cubic-bezier(.2,.8,.2,1)}
+  section.bwd{animation:slideback .45s cubic-bezier(.2,.8,.2,1)}
+  h2{font-size:22px;margin:0 0 4px;letter-spacing:-.2px}
+  .lead{color:var(--muted);margin:0 0 18px;font-size:14px}
+  .lead a,.hint a{color:var(--brand2)}
+  h3{font-size:15px;margin:22px 0 10px;padding-top:16px;border-top:1px solid var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px 12px}
+  .c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}
+  @media (max-width:560px){.c4,.c3,.c2{grid-column:span 6}.c2.keep{grid-column:span 3}}
+  label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+  label .opt{font-weight:400;color:var(--muted)}
+  input,select,textarea{width:100%;font:inherit;font-size:16px;padding:12px 13px;border:1.5px solid #d3d9e3;border-radius:11px;background:#fff;color:var(--ink);transition:border-color .18s,box-shadow .18s,background .18s}
+  input:hover,select:hover{border-color:#b9c3d2}
+  input:focus,select:focus{outline:none;border-color:var(--brand2);box-shadow:0 0 0 4px rgba(47,111,191,.16)}
+  .bad input,.bad select{border-color:var(--err);background:#fff8f7;animation:shake .35s}
+  .msg{font-size:12px;color:var(--err);margin-top:5px;min-height:0}
+  .hint{font-size:12px;color:var(--muted);margin-top:5px}
+  .choice{display:flex;gap:11px;align-items:flex-start;border:1.5px solid #d3d9e3;border-radius:12px;padding:13px;margin-bottom:9px;cursor:pointer;background:#fff;transition:border-color .18s,background .18s,transform .12s,box-shadow .18s}
+  .choice:hover{border-color:#a9b8cf;transform:translateY(-1px);box-shadow:0 4px 10px rgba(16,24,40,.05)}
+  .choice input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--brand2)}
+  .choice:has(input:checked){border-color:var(--brand2);background:var(--soft);box-shadow:0 0 0 3px rgba(47,111,191,.12)}
+  .choice span{font-size:14px}
+  .bad .choice{border-color:var(--err)}
+  .row{display:flex;justify-content:space-between;gap:10px;margin-top:24px;align-items:center}
+  button{font:inherit;font-weight:700;font-size:15px;border-radius:12px;padding:13px 22px;border:1px solid transparent;cursor:pointer;transition:transform .12s,box-shadow .18s,background .18s}
+  button:active:not(:disabled){transform:scale(.97)}
+  .primary{background:linear-gradient(135deg,var(--brand2),var(--brand));color:#fff;box-shadow:0 6px 16px rgba(31,78,140,.28)}
+  .primary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 22px rgba(31,78,140,.32)}
+  .primary.go{background:linear-gradient(135deg,#f6bd2b,var(--amber));color:#1b2333;box-shadow:0 6px 16px rgba(242,169,0,.35)}
+  .ghost{background:#fff;border-color:#d3d9e3;color:var(--ink)}
+  button:disabled{opacity:.6;cursor:default}
+  .spinner{display:inline-block;width:15px;height:15px;border:2.5px solid rgba(0,0,0,.2);border-top-color:currentColor;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:8px}
+  .note{display:flex;gap:10px;background:var(--soft);border:1px solid #d6e4f7;border-radius:12px;padding:12px 14px;font-size:13px;color:#2b3a55;margin:0 0 18px}
+  .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 18px}
+  .perks div{background:#fafbfd;border:1px solid var(--line);border-radius:12px;padding:10px;font-size:12.5px;color:var(--muted);text-align:center;animation:rise .5s both}
+  .perks div:nth-child(2){animation-delay:.08s}.perks div:nth-child(3){animation-delay:.16s}
+  .perks b{display:block;font-size:18px;color:var(--ink);margin-bottom:2px}
+  .sigwrap{border:1.5px dashed #9aa7bb;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fafd);position:relative;touch-action:none}
+  .sigwrap canvas{width:100%;height:170px;display:block;cursor:crosshair}
+  .sigwrap .ph{position:absolute;left:14px;bottom:12px;font-size:13px;color:#98a2b3;pointer-events:none}
+  .sigline{position:absolute;left:14px;right:14px;bottom:36px;border-bottom:1px solid #c7cfdb;pointer-events:none}
+  .sigline::before{content:"✕";position:absolute;left:0;bottom:2px;color:#b6c0cf;font-size:14px}
+  .review{font-size:14px}
+  .review dl{display:grid;grid-template-columns:minmax(120px,38%) 1fr;gap:6px 12px;margin:0}
+  .review dt{color:var(--muted)}.review dd{margin:0;word-break:break-word}
+  .review .rb{background:#fafbfd;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+  .review h4{margin:0 0 8px;font-size:14px;display:flex;justify-content:space-between}
+  .review h4 a{font-weight:600;font-size:13px;color:var(--brand2);cursor:pointer}
+  .attest{font-size:13px}
+  .done{text-align:center;padding:34px 20px 30px;position:relative;overflow:hidden}
+  .done .tick{width:84px;height:84px;margin:0 auto 14px;animation:pop .6s cubic-bezier(.2,.9,.3,1.3) both}
+  .done .tick circle{fill:#e3f4ea}
+  .done .tick path{fill:none;stroke:var(--ok);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw .5s .45s ease-out forwards}
+  .done h2{animation:rise .5s .5s both}.done .lead{animation:rise .5s .65s both}
+  .done .road2{position:relative;height:70px;margin:20px -20px -30px;overflow:hidden}
+  .done .road2::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22px;background:#232b3a}
+  .done .road2 .truck{position:absolute;bottom:12px;left:12%;width:150px;animation:driveoff 3.2s 1s cubic-bezier(.5,0,.75,0) forwards}
+  .confetti{position:absolute;top:0;width:8px;height:12px;border-radius:2px;animation:fall 2.6s ease-in forwards}
+  .bring{text-align:left;background:#fafbfd;border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:13.5px;margin:16px auto 0;max-width:480px;animation:rise .5s .8s both}
+  .err-banner{background:#fdecea;color:var(--err);border-radius:10px;padding:10px 14px;font-size:14px;margin-top:14px;display:none;animation:shake .4s}
+  .hidden{display:none!important}
+  .hp{position:absolute;left:-9999px}
+  footer{max-width:760px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:12px;text-align:center}
+  footer a{color:var(--muted)}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.done .tick path{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="top"><div><h1>C &amp; S Delivery Service Inc.</h1><small>509 Gipson Manor Ct. · Crowley, Texas 76036</small></div><span class="tag">New hire paperwork</span></div>
+  <div class="title"><b>Let's get you on the road.</b><span>Direct deposit, W-4 and I-9 — all in one place, about 10 minutes.</span></div>
+  <div class="scene" aria-hidden="true">
+    <div class="sun"></div><div class="cloud cl1"></div><div class="cloud cl2"></div><div class="cloud cl3"></div>
+    <div class="skyline"></div><div class="road"></div>
+    <div class="truckbox"><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="speed" style="top:40%;width:26px"></span><span class="speed" style="top:60%;width:34px;animation-delay:.4s"></span>__TRUCK__</div>
+  </div>
+</header>
+<main>
+  <div id="progress">
+    <div class="track" id="track"><div class="fill" id="fill"></div><div class="mini" id="mini">__TRUCK__</div></div>
+    <div class="steplabel" id="stepLabel"></div>
+  </div>
+
+  <form id="f" class="card" novalidate autocomplete="on">
+    <input class="hp" type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <!-- STEP 1 -->
+    <section data-step="Your information">
+      <h2>Welcome aboard</h2>
+      <p class="lead">This takes about 10 minutes and replaces the paper Direct Deposit, W-4 and I-9 forms. Have your bank details and Social Security number ready.</p>
+      <div class="perks"><div><b>📱</b>Works on your phone</div><div><b>✍️</b>Sign with your finger</div><div><b>⏱</b>About 10 minutes</div></div>
+      <div class="note"><span>🔒</span><span>Your answers are encrypted in transit and only C &amp; S HR can see them. You won't be able to view them again after submitting.</span></div>
+      <div class="grid">
+        <div class="c3"><label for="first">First name</label><input id="first" required autocomplete="given-name"></div>
+        <div class="c3"><label for="last">Last name</label><input id="last" required autocomplete="family-name"></div>
+        <div class="c2 keep"><label for="mi">Middle initial <span class="opt">(optional)</span></label><input id="mi" maxlength="1" autocomplete="additional-name"></div>
+        <div class="c4"><label for="otherLast">Other last names used <span class="opt">(optional)</span></label><input id="otherLast"></div>
+        <div class="c4"><label for="addr">Street address</label><input id="addr" required autocomplete="address-line1"></div>
+        <div class="c2"><label for="apt">Apt. <span class="opt">(optional)</span></label><input id="apt" autocomplete="address-line2"></div>
+        <div class="c2"><label for="state">State</label><select id="state" required autocomplete="address-level1"></select></div>
+        <div class="c2"><label for="city">City</label><input id="city" list="cityList" required autocomplete="address-level2" placeholder="Pick or type"><datalist id="cityList"></datalist></div>
+        <div class="c2"><label for="zip">ZIP code</label><input id="zip" required inputmode="numeric" maxlength="10" autocomplete="postal-code" data-v="zip"></div>
+        <div class="c3"><label for="dob">Date of birth</label><input id="dob" type="date" required autocomplete="bday" data-v="dob"></div>
+        <div class="c3"><label for="ssn">Social Security number</label><input id="ssn" required inputmode="numeric" maxlength="11" placeholder="123-45-6789" data-v="ssn" autocomplete="off"><div class="hint">Required for your W-4 tax form.</div></div>
+        <div class="c3"><label for="email">Email</label><input id="email" type="email" required autocomplete="email" data-v="email"></div>
+        <div class="c3"><label for="phone">Phone</label><input id="phone" type="tel" required inputmode="tel" autocomplete="tel" data-v="phone" placeholder="(817) 555-0123"></div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section data-step="Direct deposit" class="hidden">
+      <h2>Direct deposit</h2>
+      <p class="lead">Where should we send your paycheck?</p>
+      <label>Account type</label>
+      <div class="grid" data-group="acctType">
+        <label class="choice c3"><input type="radio" name="acctType" value="Checking" required><span>Checking</span></label>
+        <label class="choice c3"><input type="radio" name="acctType" value="Savings"><span>Savings</span></label>
+      </div>
+      <div class="grid" style="margin-top:6px">
+        <div class="c6"><label for="bank">Bank name</label><input id="bank" required></div>
+        <div class="c6"><label for="routing">Routing number (ABA)</label><input id="routing" required inputmode="numeric" maxlength="9" data-v="routing" autocomplete="off"><div class="hint">9 digits, bottom-left of a check.</div></div>
+        <div class="c3"><label for="acct">Account number</label><input id="acct" required inputmode="numeric" maxlength="17" data-v="acct" autocomplete="off"></div>
+        <div class="c3"><label for="acct2">Re-enter account number</label><input id="acct2" required inputmode="numeric" maxlength="17" data-v="acct2" autocomplete="off"></div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section data-step="Tax withholding (W-4)" class="hidden">
+      <h2>Federal tax withholding (Form W-4)</h2>
+      <p class="lead">Unsure? You can use the IRS estimator at <a href="https://www.irs.gov/W4App" target="_blank" rel="noopener">irs.gov/W4App</a>. If Steps 2–4 don't apply to you, leave them blank.</p>
+      <label>Step 1(c) – Filing status</label>
+      <div data-group="filing">
+        <label class="choice"><input type="radio" name="filing" value="Single_MFS" required><span>Single or Married filing separately</span></label>
+        <label class="choice"><input type="radio" name="filing" value="MFJ_QSS"><span>Married filing jointly or Qualifying surviving spouse</span></label>
+        <label class="choice"><input type="radio" name="filing" value="HeadOfHousehold"><span>Head of household <span class="opt" style="color:var(--muted)">(unmarried and pay more than half the costs of keeping up a home for yourself and a qualifying individual)</span></span></label>
+      </div>
+      <h3>Step 2 – Multiple jobs or spouse works</h3>
+      <label class="choice"><input type="checkbox" id="twoJobs"><span>There are only two jobs total (you and/or your spouse) – check this box on the W-4 for both jobs.</span></label>
+      <h3>Step 3 – Dependents and other credits</h3>
+      <p class="hint" style="margin-top:-4px">Only if your total income will be $200,000 or less ($400,000 or less if married filing jointly).</p>
+      <div class="grid">
+        <div class="c2"><label for="kids">Qualifying children under 17</label><input id="kids" type="number" min="0" max="20" inputmode="numeric" placeholder="0"><div class="hint" id="kidsAmt">× $2,200</div></div>
+        <div class="c2"><label for="deps">Other dependents</label><input id="deps" type="number" min="0" max="20" inputmode="numeric" placeholder="0"><div class="hint" id="depsAmt">× $500</div></div>
+        <div class="c2"><label for="otherCred">Other credits ($)</label><input id="otherCred" inputmode="decimal" placeholder="0.00" data-v="money"><div class="hint" id="step3Total">Step 3 total: $0.00</div></div>
+      </div>
+      <h3>Step 4 – Other adjustments <span class="opt" style="font-weight:400;color:var(--muted)">(optional)</span></h3>
+      <div class="grid">
+        <div class="c2"><label for="s4a">4(a) Other income ($)</label><input id="s4a" inputmode="decimal" placeholder="0.00" data-v="money"></div>
+        <div class="c2"><label for="s4b">4(b) Deductions ($)</label><input id="s4b" inputmode="decimal" placeholder="0.00" data-v="money"></div>
+        <div class="c2"><label for="s4c">4(c) Extra withholding per pay ($)</label><input id="s4c" inputmode="decimal" placeholder="0.00" data-v="money"></div>
+      </div>
+      <h3>Exempt from withholding</h3>
+      <label class="choice"><input type="checkbox" id="exempt"><span>I claim exemption from withholding for 2026 and certify that I meet both conditions for exemption (see W-4 page 2).</span></label>
+    </section>
+
+    <!-- STEP 4 -->
+    <section data-step="Work eligibility (I-9)" class="hidden">
+      <h2>Employment eligibility (Form I-9, Section 1)</h2>
+      <p class="lead">Check the one box that describes your citizenship or immigration status. Read the <a href="https://www.uscis.gov/i-9" target="_blank" rel="noopener">official Form I-9 instructions</a> if you have questions. On your first day, bring <b>original</b> documents from the <a href="https://www.uscis.gov/i-9-central/form-i-9-acceptable-documents" target="_blank" rel="noopener">acceptable documents list</a> — you choose which ones: one from List A, <i>or</i> one from List B plus one from List C.</p>
+      <div data-group="cit">
+        <label class="choice"><input type="radio" name="cit" value="1_Citizen" required><span>1. A citizen of the United States</span></label>
+        <label class="choice"><input type="radio" name="cit" value="2_NoncitizenNational"><span>2. A noncitizen national of the United States</span></label>
+        <label class="choice"><input type="radio" name="cit" value="3_PermanentResident"><span>3. A lawful permanent resident</span></label>
+        <label class="choice"><input type="radio" name="cit" value="4_AlienAuthorized"><span>4. A noncitizen (other than item 2 and 3) authorized to work</span></label>
+      </div>
+      <div id="cit3" class="grid hidden" style="margin-top:6px">
+        <div class="c6"><label for="lprNum">USCIS or A-Number</label><input id="lprNum" data-req="cit3"></div>
+      </div>
+      <div id="cit4" class="grid hidden" style="margin-top:6px">
+        <div class="c6"><label for="authExp">Work authorization expires <span class="opt">(leave blank if no expiration)</span></label><input id="authExp" type="date"></div>
+        <div class="c6 hint" style="margin:0">Enter <b>one</b> of the following:</div>
+        <div class="c2"><label for="aNum">USCIS A-Number</label><input id="aNum"></div>
+        <div class="c2"><label for="i94">Form I-94 Admission No.</label><input id="i94"></div>
+        <div class="c2"><label for="passport">Foreign passport no. &amp; country</label><input id="passport"></div>
+        <div class="c6 msg" id="cit4msg"></div>
+      </div>
+      <h3>Help with this form</h3>
+      <label class="choice"><input type="checkbox" id="preparer"><span>Someone helped me fill out or translate this form (HR will complete a short Preparer/Translator form with that person).</span></label>
+    </section>
+
+    <!-- STEP 5 -->
+    <section data-step="Review & sign" class="hidden">
+      <h2>Review and sign</h2>
+      <p class="lead">Check your answers, then sign once. Your signature is applied to all three forms.</p>
+      <div class="review" id="review"></div>
+      <h3>Signature</h3>
+      <div class="sigwrap" id="sigwrap"><canvas id="sig"></canvas><div class="sigline"></div><div class="ph" id="sigph">Sign here with your finger or mouse</div></div>
+      <div class="row" style="margin-top:8px"><span class="msg" id="sigmsg"></span><button type="button" class="ghost" id="sigclear" style="padding:7px 14px;font-size:13px">Clear</button></div>
+      <div class="grid" style="margin-top:6px">
+        <div class="c6"><label for="typedName">Type your full legal name</label><input id="typedName" required autocomplete="name"></div>
+      </div>
+      <div style="margin-top:14px" class="attest">
+        <label class="choice"><input type="checkbox" id="agreeDD" required><span><b>Direct Deposit:</b> I authorize C &amp; S Delivery Service Inc. to deposit my pay automatically into the account above.</span></label>
+        <label class="choice"><input type="checkbox" id="agreeW4" required><span><b>Form W-4:</b> Under penalties of perjury, I declare that this certificate, to the best of my knowledge and belief, is true, correct, and complete.</span></label>
+        <label class="choice"><input type="checkbox" id="agreeI9" required><span><b>Form I-9:</b> I am aware that federal law provides for imprisonment and/or fines for false statements, or the use of false documents, in connection with the completion of this form. I attest, under penalty of perjury, that this information, including my selection of the box attesting to my citizenship or immigration status, is true and correct.</span></label>
+        <label class="choice"><input type="checkbox" id="agreeE" required><span>I agree to sign these forms electronically, and my drawn signature has the same effect as my handwritten signature.</span></label>
+      </div>
+    </section>
+
+    <div class="err-banner" id="errBanner"></div>
+    <div class="row" id="nav">
+      <button type="button" class="ghost" id="back">Back</button>
+      <button type="button" class="primary" id="next">Continue</button>
+    </div>
+  </form>
+
+  <div id="done" class="card done hidden">
+    <svg class="tick" viewBox="0 0 84 84"><circle cx="42" cy="42" r="42"/><path d="M25 43l11 11 23-24"/></svg>
+    <h2>You're all set — welcome to the team!</h2>
+    <p class="lead" style="margin-top:8px">Your paperwork was sent to C &amp; S HR.</p>
+    <div class="bring"><b>Bring on your first day (originals, not copies):</b><br>• A U.S. passport or Permanent Resident Card, <b>or</b><br>• A driver's license or state ID <b>plus</b> a Social Security card or birth certificate</div>
+    <div class="road2" aria-hidden="true">__TRUCK__</div>
+  </div>
+</main>
+<footer>C &amp; S Delivery Service Inc. · Questions? Contact HR. · <a href="hr.html">HR login</a></footer>
+
+<script>
+const SUPABASE_URL = "https://yxpjitdqqodfyqxvwglv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_jibRZ8TZlJvnEJGABG_Vbg_GGYHUhcg";
+// The SSN box on Form I-9 is voluntary unless the employer uses E-Verify. Set to true if C & S enrolls in E-Verify.
+const USE_EVERIFY = false;
+const STATES = [["AL", "Alabama"], ["AK", "Alaska"], ["AZ", "Arizona"], ["AR", "Arkansas"], ["CA", "California"], ["CO", "Colorado"], ["CT", "Connecticut"], ["DE", "Delaware"], ["DC", "District of Columbia"], ["FL", "Florida"], ["GA", "Georgia"], ["HI", "Hawaii"], ["ID", "Idaho"], ["IL", "Illinois"], ["IN", "Indiana"], ["IA", "Iowa"], ["KS", "Kansas"], ["KY", "Kentucky"], ["LA", "Louisiana"], ["ME", "Maine"], ["MD", "Maryland"], ["MA", "Massachusetts"], ["MI", "Michigan"], ["MN", "Minnesota"], ["MS", "Mississippi"], ["MO", "Missouri"], ["MT", "Montana"], ["NE", "Nebraska"], ["NV", "Nevada"], ["NH", "New Hampshire"], ["NJ", "New Jersey"], ["NM", "New Mexico"], ["NY", "New York"], ["NC", "North Carolina"], ["ND", "North Dakota"], ["OH", "Ohio"], ["OK", "Oklahoma"], ["OR", "Oregon"], ["PA", "Pennsylvania"], ["RI", "Rhode Island"], ["SC", "South Carolina"], ["SD", "South Dakota"], ["TN", "Tennessee"], ["TX", "Texas"], ["UT", "Utah"], ["VT", "Vermont"], ["VA", "Virginia"], ["WA", "Washington"], ["WV", "West Virginia"], ["WI", "Wisconsin"], ["WY", "Wyoming"]];
+const CITIES = {"AL": ["Auburn", "Birmingham", "Decatur", "Dothan", "Hoover", "Huntsville", "Madison", "Mobile", "Montgomery", "Tuscaloosa"], "AK": ["Anchorage", "Fairbanks", "Juneau", "Kenai", "Ketchikan", "Palmer", "Sitka", "Wasilla"], "AZ": ["Chandler", "Flagstaff", "Gilbert", "Glendale", "Mesa", "Peoria", "Phoenix", "Scottsdale", "Surprise", "Tempe", "Tucson", "Yuma"], "AR": ["Bentonville", "Conway", "Fayetteville", "Fort Smith", "Jonesboro", "Little Rock", "North Little Rock", "Pine Bluff", "Rogers", "Springdale"], "CA": ["Anaheim", "Bakersfield", "Chula Vista", "Fremont", "Fresno", "Irvine", "Long Beach", "Los Angeles", "Modesto", "Oakland", "Riverside", "Sacramento", "San Bernardino", "San Diego", "San Francisco", "San Jose", "Santa Ana", "Stockton"], "CO": ["Arvada", "Aurora", "Boulder", "Colorado Springs", "Denver", "Fort Collins", "Greeley", "Lakewood", "Pueblo", "Thornton", "Westminster"], "CT": ["Bridgeport", "Danbury", "Hartford", "New Britain", "New Haven", "Norwalk", "Stamford", "Waterbury"], "DE": ["Dover", "Middletown", "Milford", "Newark", "Smyrna", "Wilmington"], "DC": ["Washington"], "FL": ["Cape Coral", "Fort Lauderdale", "Gainesville", "Hialeah", "Hollywood", "Jacksonville", "Miami", "Orlando", "Pembroke Pines", "Pensacola", "Port St. Lucie", "St. Petersburg", "Tallahassee", "Tampa"], "GA": ["Albany", "Athens", "Atlanta", "Augusta", "Columbus", "Johns Creek", "Macon", "Marietta", "Roswell", "Sandy Springs", "Savannah"], "HI": ["Hilo", "Honolulu", "Kailua", "Kaneohe", "Kapolei", "Pearl City", "Waipahu"], "ID": ["Boise", "Caldwell", "Coeur d'Alene", "Idaho Falls", "Meridian", "Nampa", "Pocatello", "Twin Falls"], "IL": ["Aurora", "Champaign", "Chicago", "Cicero", "Elgin", "Joliet", "Naperville", "Peoria", "Rockford", "Springfield", "Waukegan"], "IN": ["Bloomington", "Carmel", "Evansville", "Fishers", "Fort Wayne", "Gary", "Hammond", "Indianapolis", "Lafayette", "South Bend"], "IA": ["Ames", "Ankeny", "Cedar Rapids", "Davenport", "Des Moines", "Iowa City", "Sioux City", "Waterloo", "West Des Moines"], "KS": ["Kansas City", "Lawrence", "Lenexa", "Manhattan", "Olathe", "Overland Park", "Salina", "Shawnee", "Topeka", "Wichita"], "KY": ["Bowling Green", "Covington", "Florence", "Georgetown", "Lexington", "Louisville", "Owensboro", "Richmond"], "LA": ["Alexandria", "Baton Rouge", "Bossier City", "Kenner", "Lafayette", "Lake Charles", "Monroe", "New Orleans", "Shreveport"], "ME": ["Auburn", "Augusta", "Bangor", "Biddeford", "Lewiston", "Portland", "South Portland"], "MD": ["Annapolis", "Baltimore", "Columbia", "Ellicott City", "Frederick", "Gaithersburg", "Germantown", "Rockville", "Silver Spring", "Waldorf"], "MA": ["Boston", "Brockton", "Cambridge", "Fall River", "Lowell", "Lynn", "New Bedford", "Quincy", "Springfield", "Worcester"], "MI": ["Ann Arbor", "Dearborn", "Detroit", "Flint", "Grand Rapids", "Kalamazoo", "Lansing", "Livonia", "Sterling Heights", "Troy", "Warren"], "MN": ["Bloomington", "Brooklyn Park", "Duluth", "Maple Grove", "Minneapolis", "Plymouth", "Rochester", "St. Cloud", "St. Paul", "Woodbury"], "MS": ["Biloxi", "Gulfport", "Hattiesburg", "Jackson", "Meridian", "Olive Branch", "Southaven", "Tupelo"], "MO": ["Columbia", "Independence", "Joplin", "Kansas City", "Lee's Summit", "O'Fallon", "Springfield", "St. Charles", "St. Joseph", "St. Louis"], "MT": ["Billings", "Bozeman", "Butte", "Great Falls", "Helena", "Kalispell", "Missoula"], "NE": ["Bellevue", "Fremont", "Grand Island", "Kearney", "Lincoln", "Norfolk", "Omaha"], "NV": ["Carson City", "Elko", "Henderson", "Las Vegas", "North Las Vegas", "Reno", "Sparks"], "NH": ["Concord", "Derry", "Dover", "Manchester", "Nashua", "Rochester", "Salem"], "NJ": ["Camden", "Edison", "Elizabeth", "Jersey City", "Lakewood", "Newark", "Paterson", "Toms River", "Trenton", "Woodbridge"], "NM": ["Albuquerque", "Clovis", "Farmington", "Hobbs", "Las Cruces", "Rio Rancho", "Roswell", "Santa Fe"], "NY": ["Albany", "Buffalo", "Mount Vernon", "New Rochelle", "New York", "Rochester", "Schenectady", "Syracuse", "Utica", "White Plains", "Yonkers"], "NC": ["Asheville", "Cary", "Charlotte", "Concord", "Durham", "Fayetteville", "Greensboro", "High Point", "Raleigh", "Wilmington", "Winston-Salem"], "ND": ["Bismarck", "Dickinson", "Fargo", "Grand Forks", "Minot", "West Fargo", "Williston"], "OH": ["Akron", "Canton", "Cincinnati", "Cleveland", "Columbus", "Dayton", "Hamilton", "Lorain", "Parma", "Toledo", "Youngstown"], "OK": ["Broken Arrow", "Edmond", "Enid", "Lawton", "Midwest City", "Moore", "Norman", "Oklahoma City", "Stillwater", "Tulsa"], "OR": ["Beaverton", "Bend", "Corvallis", "Eugene", "Gresham", "Hillsboro", "Medford", "Portland", "Salem", "Springfield"], "PA": ["Allentown", "Bethlehem", "Erie", "Harrisburg", "Lancaster", "Philadelphia", "Pittsburgh", "Reading", "Scranton", "York"], "RI": ["Cranston", "East Providence", "Newport", "Pawtucket", "Providence", "Warwick", "Woonsocket"], "SC": ["Charleston", "Columbia", "Greenville", "Mount Pleasant", "Myrtle Beach", "North Charleston", "Rock Hill", "Spartanburg", "Summerville"], "SD": ["Aberdeen", "Brookings", "Mitchell", "Pierre", "Rapid City", "Sioux Falls", "Watertown"], "TN": ["Chattanooga", "Clarksville", "Franklin", "Jackson", "Johnson City", "Knoxville", "Memphis", "Murfreesboro", "Nashville"], "TX": ["Crowley", "Abilene", "Amarillo", "Arlington", "Austin", "Beaumont", "Bedford", "Benbrook", "Brownsville", "Burleson", "Carrollton", "Cedar Hill", "Cleburne", "College Station", "Corpus Christi", "Dallas", "DeSoto", "Denton", "Duncanville", "El Paso", "Euless", "Everman", "Forest Hill", "Fort Worth", "Frisco", "Garland", "Granbury", "Grand Prairie", "Grapevine", "Haltom City", "Houston", "Hurst", "Irving", "Joshua", "Keller", "Kennedale", "Killeen", "Lancaster", "Laredo", "Lewisville", "Lubbock", "Mansfield", "McAllen", "McKinney", "Mesquite", "Midland", "Midlothian", "North Richland Hills", "Odessa", "Pasadena", "Plano", "Round Rock", "Saginaw", "San Angelo", "San Antonio", "Temple", "Tyler", "Waco", "Waxahachie", "Weatherford", "Wichita Falls"], "UT": ["Layton", "Lehi", "Logan", "Ogden", "Orem", "Provo", "Salt Lake City", "Sandy", "St. George", "West Jordan", "West Valley City"], "VT": ["Barre", "Burlington", "Essex Junction", "Montpelier", "Rutland", "South Burlington"], "VA": ["Alexandria", "Arlington", "Chesapeake", "Hampton", "Lynchburg", "Newport News", "Norfolk", "Portsmouth", "Richmond", "Roanoke", "Virginia Beach"], "WA": ["Bellevue", "Everett", "Federal Way", "Kent", "Kirkland", "Renton", "Seattle", "Spokane", "Spokane Valley", "Tacoma", "Vancouver", "Yakima"], "WV": ["Charleston", "Fairmont", "Huntington", "Morgantown", "Parkersburg", "Weirton", "Wheeling"], "WI": ["Appleton", "Eau Claire", "Green Bay", "Janesville", "Kenosha", "Madison", "Milwaukee", "Oshkosh", "Racine", "Waukesha"], "WY": ["Casper", "Cheyenne", "Gillette", "Green River", "Laramie", "Rock Springs", "Sheridan"]};
+
+const $ = id => document.getElementById(id);
+const sections = [...document.querySelectorAll("section[data-step]")];
+let step = 0;
+
+// ---------- setup ----------
+$("state").innerHTML = '<option value="">Select…</option>' + STATES.map(([a, n]) => `<option value="${a}">${n}</option>`).join("");
+$("state").value = "TX"; fillCities();
+$("state").addEventListener("change", () => { fillCities(); });
+function fillCities() {
+  const list = CITIES[$("state").value] || [];
+  $("cityList").innerHTML = list.map(c => `<option value="${c.replace(/"/g, "&quot;")}">`).join("");
+}
+$("track").insertAdjacentHTML("beforeend", sections.map((_, k) => `<span class="dot" style="left:${k / (sections.length - 1) * 100}%"></span>`).join(""));
+
+// input masks
+$("ssn").addEventListener("input", e => { let d = e.target.value.replace(/\D/g, "").slice(0, 9); e.target.value = d.length > 5 ? `${d.slice(0,3)}-${d.slice(3,5)}-${d.slice(5)}` : d.length > 3 ? `${d.slice(0,3)}-${d.slice(3)}` : d; });
+$("phone").addEventListener("input", e => { let d = e.target.value.replace(/\D/g, "").slice(0, 10); e.target.value = d.length > 6 ? `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}` : d.length > 3 ? `(${d.slice(0,3)}) ${d.slice(3)}` : d; });
+["routing", "acct", "acct2"].forEach(id => $(id).addEventListener("input", e => e.target.value = e.target.value.replace(/\D/g, "")));
+$("zip").addEventListener("input", e => { let d = e.target.value.replace(/\D/g, "").slice(0, 9); e.target.value = d.length > 5 ? d.slice(0,5) + "-" + d.slice(5) : d; });
+$("mi").addEventListener("input", e => e.target.value = e.target.value.toUpperCase());
+
+document.querySelectorAll('input[name="cit"]').forEach(r => r.addEventListener("change", () => {
+  const v = val("cit"); $("cit3").classList.toggle("hidden", v !== "3_PermanentResident"); $("cit4").classList.toggle("hidden", v !== "4_AlienAuthorized");
+}));
+
+// W-4 step 3 math
+const money = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const num = s => { const n = parseFloat(String(s || "").replace(/[$,\s]/g, "")); return isFinite(n) ? n : 0; };
+function step3() {
+  const a = Math.max(0, parseInt($("kids").value || 0)) * 2200, b = Math.max(0, parseInt($("deps").value || 0)) * 500, o = num($("otherCred").value);
+  $("kidsAmt").textContent = `× $2,200 = $${money(a)}`; $("depsAmt").textContent = `× $500 = $${money(b)}`;
+  $("step3Total").textContent = `Step 3 total: $${money(a + b + o)}`; return { a, b, o, t: a + b + o };
+}
+["kids", "deps", "otherCred"].forEach(id => $(id).addEventListener("input", step3));
+
+// ---------- validation ----------
+function val(name) { const r = document.querySelector(`input[name="${name}"]:checked`); return r ? r.value : ""; }
+function abaValid(r) { if (!/^\d{9}$/.test(r)) return false; const d = r.split("").map(Number); return (3*(d[0]+d[3]+d[6]) + 7*(d[1]+d[4]+d[7]) + (d[2]+d[5]+d[8])) % 10 === 0; }
+const CHECKS = {
+  zip: v => /^\d{5}(-\d{4})?$/.test(v) || "Enter a 5-digit ZIP code.",
+  ssn: v => (/^\d{3}-\d{2}-\d{4}$/.test(v) && !/^(000|666|9)/.test(v)) || "Enter a valid 9-digit SSN.",
+  email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Enter a valid email.",
+  phone: v => v.replace(/\D/g, "").length === 10 || "Enter a 10-digit phone number.",
+  dob: v => { const d = new Date(v), y = (Date.now() - d) / 31557600000; return (y >= 14 && y <= 100) || "Check your date of birth."; },
+  routing: v => abaValid(v) || "That routing number isn't valid. Please double-check it.",
+  acct: v => /^\d{4,17}$/.test(v) || "Enter your account number (digits only).",
+  acct2: v => v === $("acct").value || "Account numbers don't match.",
+  money: v => !v || /^\$?\s*[\d,]*\.?\d{0,2}$/.test(v.trim()) || "Enter a dollar amount.",
+};
+function setErr(el, msg) {
+  const box = el.closest("div[class^=c], [data-group]") || el.parentElement;
+  box.classList.toggle("bad", !!msg);
+  let m = box.querySelector(":scope > .msg"); if (!m) { m = document.createElement("div"); m.className = "msg"; box.appendChild(m); }
+  m.textContent = msg || "";
+}
+function validateStep(i) {
+  const sec = sections[i]; let first = null;
+  sec.querySelectorAll("input,select").forEach(el => {
+    if (el.type === "radio" || el.closest(".hidden") || el.classList.contains("hp")) return;
+    let msg = "";
+    const v = (el.value || "").trim();
+    if (el.type === "checkbox") { if (el.required && !el.checked) msg = "Required."; if (msg) { el.closest(".choice").style.borderColor = "var(--err)"; first ||= el; } else el.closest(".choice").style.borderColor = ""; return; }
+    const req = el.required || (el.dataset.req && !$(el.dataset.req).classList.contains("hidden"));
+    if (req && !v) msg = "Required.";
+    else if (v && el.dataset.v && CHECKS[el.dataset.v]) { const r = CHECKS[el.dataset.v](v); if (r !== true) msg = r; }
+    setErr(el, msg); if (msg && !first) first = el;
+  });
+  sec.querySelectorAll("[data-group]").forEach(g => {
+    if (g.closest(".hidden")) return;
+    const ok = !!val(g.dataset.group); setErr(g.querySelector("input"), ok ? "" : "Please choose one.");
+    g.classList.toggle("bad", !ok); if (!ok && !first) first = g.querySelector("input");
+  });
+  if (sections[i].contains($("cit4")) && !$("cit4").classList.contains("hidden")) {
+    const any = ["aNum", "i94", "passport"].some(id => $(id).value.trim());
+    $("cit4msg").textContent = any ? "" : "Enter an A-Number, I-94 number, or foreign passport number.";
+    if (!any && !first) first = $("aNum");
+  }
+  if (i === sections.length - 1 && !sig.has) { $("sigmsg").textContent = "Please sign above."; first ||= $("sig"); } else if (i === sections.length - 1) $("sigmsg").textContent = "";
+  if (first) { first.scrollIntoView({ behavior: "smooth", block: "center" }); if (first.focus) first.focus({ preventScroll: true }); }
+  return !first;
+}
+document.addEventListener("change", e => { if (e.target.closest(".bad")) { const b = e.target.closest(".bad"); b.classList.remove("bad"); const m = b.querySelector(".msg"); if (m) m.textContent = ""; } });
+
+// ---------- signature pad ----------
+const sig = { has: false };
+(function () {
+  const c = $("sig"), ctx = c.getContext("2d"); let drawing = false, last = null;
+  function size() { const r = c.getBoundingClientRect(); if (!r.width) return; const data = sig.has ? c.toDataURL() : null; c.width = r.width * 2; c.height = r.height * 2; ctx.scale(2, 2); ctx.lineWidth = 2.4; ctx.lineCap = ctx.lineJoin = "round"; ctx.strokeStyle = "#0d1b4c"; if (data) { const im = new Image(); im.onload = () => ctx.drawImage(im, 0, 0, r.width, r.height); im.src = data; } }
+  sig.size = size;
+  window.addEventListener("resize", size);
+  const pt = e => { const r = c.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  c.addEventListener("pointerdown", e => { drawing = true; last = pt(e); c.setPointerCapture(e.pointerId); ctx.beginPath(); ctx.arc(last[0], last[1], 1, 0, 7); ctx.fillStyle = "#0d1b4c"; ctx.fill(); });
+  c.addEventListener("pointermove", e => { if (!drawing) return; const p = pt(e); ctx.beginPath(); ctx.moveTo(...last); ctx.lineTo(...p); ctx.stroke(); last = p; if (!sig.has) { sig.has = true; $("sigph").style.display = "none"; $("sigmsg").textContent = ""; } });
+  ["pointerup", "pointercancel", "pointerleave"].forEach(t => c.addEventListener(t, () => drawing = false));
+  $("sigclear").onclick = () => { ctx.clearRect(0, 0, c.width, c.height); sig.has = false; $("sigph").style.display = ""; };
+  sig.png = () => { // trim to ink bounds
+    const w = c.width, h = c.height, d = ctx.getImageData(0, 0, w, h).data; let x0 = w, y0 = h, x1 = 0, y1 = 0;
+    for (let y = 0; y < h; y += 2) for (let x = 0; x < w; x += 2) if (d[(y * w + x) * 4 + 3] > 20) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+    const p = 8; x0 = Math.max(0, x0 - p); y0 = Math.max(0, y0 - p); x1 = Math.min(w, x1 + p); y1 = Math.min(h, y1 + p);
+    const t = document.createElement("canvas"), sc = Math.min(1, 600 / (x1 - x0)); t.width = Math.round((x1 - x0) * sc); t.height = Math.round((y1 - y0) * sc);
+    t.getContext("2d").drawImage(c, x0, y0, x1 - x0, y1 - y0, 0, 0, t.width, t.height); return t.toDataURL("image/png");
+  };
+})();
+
+// ---------- navigation ----------
+function show(i) {
+  const dir = i >= step ? "fwd" : "bwd";
+  step = i; sections.forEach((s, k) => { s.classList.toggle("hidden", k !== i); s.classList.remove("fwd", "bwd"); });
+  void sections[i].offsetWidth; sections[i].classList.add(dir);
+  const pct = i / (sections.length - 1) * 100;
+  $("fill").style.width = pct + "%"; $("mini").style.left = pct + "%";
+  $("track").querySelectorAll(".dot").forEach((d, k) => d.classList.toggle("on", k <= i));
+  $("stepLabel").innerHTML = `Step ${i + 1} of ${sections.length} · <b>${sections[i].dataset.step.replace(/&/g, "&amp;")}</b>`;
+  $("back").style.visibility = i ? "visible" : "hidden";
+  $("next").textContent = i === sections.length - 1 ? "Submit paperwork ✓" : "Continue →";
+  $("next").classList.toggle("go", i === sections.length - 1);
+  $("errBanner").style.display = "none";
+  if (i === sections.length - 1) { buildReview(); setTimeout(sig.size, 0); if (!$("typedName").value) $("typedName").value = [$("first").value, $("mi").value, $("last").value].filter(Boolean).join(" "); }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+$("back").onclick = () => show(step - 1);
+$("next").onclick = () => { if (!validateStep(step)) return; if (step < sections.length - 1) show(step + 1); else submit(); };
+
+// ---------- data ----------
+const isoToUS = v => { if (!v) return ""; const [y, m, d] = v.split("-"); return `${m}/${d}/${y}`; };
+const today = () => { const d = new Date(); return `${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}/${d.getFullYear()}`; };
+const mask = (s, keep = 4) => s ? "•".repeat(Math.max(0, s.length - keep)) + s.slice(-keep) : "";
+const FILING = { Single_MFS: "Single or Married filing separately", MFJ_QSS: "Married filing jointly / Qualifying surviving spouse", HeadOfHousehold: "Head of household" };
+const CIT = { "1_Citizen": "U.S. citizen", "2_NoncitizenNational": "Noncitizen national", "3_PermanentResident": "Lawful permanent resident", "4_AlienAuthorized": "Noncitizen authorized to work" };
+function collect() {
+  const t = v => (v || "").trim(), s3 = step3(), m = n => n ? money(n) : "";
+  const first = t($("first").value), mi = t($("mi").value), last = t($("last").value), date = today();
+  const d = {
+    I9_LastName: last, I9_FirstName: first, I9_MiddleInitial: mi, I9_OtherLastNames: t($("otherLast").value) || "N/A",
+    I9_Address: t($("addr").value), I9_Apt: t($("apt").value) || "N/A", I9_City: t($("city").value), I9_State: $("state").value, I9_ZIP: t($("zip").value),
+    I9_DOB: isoToUS($("dob").value), I9_SSN: USE_EVERIFY ? t($("ssn").value) : "", I9_Email: t($("email").value), I9_Phone: t($("phone").value),
+    I9_CitizenshipStatus: val("cit"), I9_EmployeeSignDate: date,
+    DD_AccountType: val("acctType"), DD_BankName: t($("bank").value), DD_RoutingNumber: t($("routing").value), DD_AccountNumber: t($("acct").value),
+    DD_EmployeeName: [first, mi && mi + ".", last].filter(Boolean).join(" "), DD_Email: t($("email").value), DD_Date: date,
+    W4_FirstNameMI: [first, mi].filter(Boolean).join(" "), W4_LastName: last, W4_SSN: t($("ssn").value), W4_Address: [t($("addr").value), t($("apt").value)].filter(Boolean).join(", Apt "),
+    W4_City: t($("city").value), W4_State: $("state").value, W4_ZIP: t($("zip").value), W4_FilingStatus: val("filing"),
+    W4_Step2c_TwoJobs: $("twoJobs").checked, W4_Step3a: m(s3.a), W4_Step3b: m(s3.b), W4_Step3Total: m(s3.t),
+    W4_Step4a: m(num($("s4a").value)), W4_Step4b: m(num($("s4b").value)), W4_Step4c: m(num($("s4c").value)), W4_Exempt: $("exempt").checked, W4_SignDate: date,
+  };
+  if (d.I9_CitizenshipStatus === "3_PermanentResident") d.I9_LPR_USCIS_ANumber = t($("lprNum").value);
+  if (d.I9_CitizenshipStatus === "4_AlienAuthorized") {
+    d.I9_AlienExpDate = isoToUS($("authExp").value) || "N/A";
+    d.I9_AlienANumber = t($("aNum").value); d.I9_I94Number = t($("i94").value); d.I9_ForeignPassport = t($("passport").value);
+  }
+  d._meta = { preparer: $("preparer").checked, typed_name: t($("typedName").value), signed_at: new Date().toISOString(), user_agent: navigator.userAgent.slice(0, 200),
+              attest: { direct_deposit: $("agreeDD").checked, w4: $("agreeW4").checked, i9: $("agreeI9").checked, esign: $("agreeE").checked }, other_credits: s3.o };
+  return d;
+}
+function buildReview() {
+  const d = collect(), esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const blk = (title, k, rows) => `<div class="rb"><h4>${title}<a data-go="${k}">Edit</a></h4><dl>${rows.filter(r => r[1]).map(r => `<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join("")}</dl></div>`;
+  $("review").innerHTML =
+    blk("Your information", 0, [["Name", [d.I9_FirstName, d.I9_MiddleInitial, d.I9_LastName].filter(Boolean).join(" ")], ["Address", `${d.I9_Address}${d.I9_Apt !== "N/A" ? ", " + d.I9_Apt : ""}, ${d.I9_City}, ${d.I9_State} ${d.I9_ZIP}`], ["Date of birth", d.I9_DOB], ["SSN", mask(d.W4_SSN)], ["Email", d.I9_Email], ["Phone", d.I9_Phone]]) +
+    blk("Direct deposit", 1, [["Bank", `${d.DD_BankName} (${d.DD_AccountType})`], ["Routing", d.DD_RoutingNumber], ["Account", mask(d.DD_AccountNumber)]]) +
+    blk("W-4", 2, [["Filing status", FILING[d.W4_FilingStatus]], ["Two jobs (2c)", d.W4_Step2c_TwoJobs ? "Yes" : ""], ["Step 3 credits", d.W4_Step3Total && "$" + d.W4_Step3Total], ["4(a) Other income", d.W4_Step4a && "$" + d.W4_Step4a], ["4(b) Deductions", d.W4_Step4b && "$" + d.W4_Step4b], ["4(c) Extra withholding", d.W4_Step4c && "$" + d.W4_Step4c], ["Exempt", d.W4_Exempt ? "Yes" : ""]]) +
+    blk("I-9", 3, [["Status", CIT[d.I9_CitizenshipStatus]], ["USCIS/A-Number", d.I9_LPR_USCIS_ANumber || d.I9_AlienANumber], ["I-94", d.I9_I94Number], ["Passport", d.I9_ForeignPassport], ["Authorization expires", d.I9_AlienExpDate]]);
+  $("review").querySelectorAll("[data-go]").forEach(a => a.onclick = () => show(+a.dataset.go));
+}
+
+// ---------- submit ----------
+let client = null;
+try { client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } }); } catch (e) {}
+async function submit() {
+  if (document.querySelector(".hp").value) { $("f").classList.add("hidden"); $("progress").classList.add("hidden"); $("done").classList.remove("hidden"); return; }
+  const btn = $("next"); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Submitting…'; $("errBanner").style.display = "none";
+  try {
+    if (!client) throw new Error("Couldn't load the secure connection. Check your internet and refresh the page.");
+    const d = collect(), png = sig.png();
+    const { error } = await client.from("hr_enrollments").insert({
+      employee_name: `${d.I9_FirstName} ${d.I9_LastName}`, employee_email: d.I9_Email, data: d,
+      signatures: { employee: png },
+    });
+    if (error) throw new Error(error.message);
+    $("f").classList.add("hidden"); $("progress").classList.add("hidden"); $("done").classList.remove("hidden"); confetti(); window.scrollTo(0, 0);
+  } catch (e) {
+    $("errBanner").textContent = "Sorry — your paperwork didn't go through. " + (e.message || "") + " Please try again.";
+    $("errBanner").style.display = "block"; btn.disabled = false; btn.textContent = "Submit paperwork ✓";
+  }
+}
+window.addEventListener("beforeunload", e => { if (step > 0 && $("done").classList.contains("hidden")) { e.preventDefault(); e.returnValue = ""; } });
+function confetti() {
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const box = $("done"), colors = ["#2f6fbf", "#f2a900", "#1f7a4d", "#e85d75", "#7cc4ff"];
+  for (let k = 0; k < 60; k++) { const c = document.createElement("span"); c.className = "confetti"; c.style.left = Math.random() * 100 + "%"; c.style.background = colors[k % colors.length]; c.style.animationDelay = Math.random() * .6 + "s"; c.style.animationDuration = 2 + Math.random() * 1.5 + "s"; box.appendChild(c); setTimeout(() => c.remove(), 4500); }
+}
+step = 0; show(0);
+</script>
+</body>
+</html>
