@@ -112,7 +112,7 @@
   <g class="wheel"><circle cx="55" cy="103" r="15" fill="#1b2333"/><circle cx="55" cy="103" r="7" fill="#c9d3e3"/><path d="M55 96v14M48 103h14" stroke="#1b2333" stroke-width="2"/></g>
   <g class="wheel"><circle cx="145" cy="103" r="15" fill="#1b2333"/><circle cx="145" cy="103" r="7" fill="#c9d3e3"/><path d="M145 96v14M138 103h14" stroke="#1b2333" stroke-width="2"/></g>
   <g class="wheel"><circle cx="252" cy="103" r="15" fill="#1b2333"/><circle cx="252" cy="103" r="7" fill="#c9d3e3"/><path d="M252 96v14M245 103h14" stroke="#1b2333" stroke-width="2"/></g>
-</svg></div><div><h1>C &amp; S Delivery · HR</h1><small>New hire submissions</small></div></div><button id="logout" class="hidden">Sign out</button></div></header>
+</svg></div><div><h1>C &amp; S Delivery · HR</h1><small>New hire submissions</small></div></div><div style="display:flex;gap:8px"><button id="chpw" class="hidden">Change password</button><button id="logout" class="hidden">Sign out</button></div></div></header>
 <main>
   <div id="loginView" class="card login hidden">
     <h2>HR sign in</h2>
@@ -127,7 +127,7 @@
   </div>
 
   <div id="resetView" class="card login hidden">
-    <h2>Set a new password</h2>
+    <h2>Set a new password</h2><p style="color:var(--muted);font-size:13px;margin:0 0 4px">At least 10 characters.</p>
     <form id="resetForm">
       <label for="npw">New password</label><input id="npw" type="password" autocomplete="new-password" minlength="10" required>
       <div class="msg" id="resetMsg"></div>
@@ -203,7 +203,7 @@ async function fillPacket(PDFLib, templateBytes, row) {
 
 
 
-function view(v) { ["loginView", "resetView", "appView"].forEach(id => $(id).classList.toggle("hidden", id !== v)); $("logout").classList.toggle("hidden", v !== "appView"); }
+function view(v) { ["loginView", "resetView", "appView"].forEach(id => $(id).classList.toggle("hidden", id !== v)); $("logout").classList.toggle("hidden", v !== "appView"); $("chpw").classList.toggle("hidden", v !== "appView"); }
 sb.auth.onAuthStateChange((ev, session) => {
   if (ev === "PASSWORD_RECOVERY") return view("resetView");
   if (session) { me = session.user; view("appView"); load(); } else view("loginView");
@@ -220,9 +220,10 @@ $("forgot").onclick = async () => {
 };
 $("resetForm").onsubmit = async e => {
   e.preventDefault(); const { error } = await sb.auth.updateUser({ password: $("npw").value });
-  if (error) $("resetMsg").textContent = error.message; else { history.replaceState(null, "", location.pathname); view("appView"); load(); }
+  if (error) $("resetMsg").textContent = error.message; else { history.replaceState(null, "", location.pathname); view("appView"); load(); $("detail").innerHTML = '<div class="empty" style="color:var(--ok)">✓ Password updated.</div>'; }
 };
 $("logout").onclick = () => sb.auth.signOut();
+$("chpw").onclick = () => { $("resetMsg").textContent = ""; $("npw").value = ""; view("resetView"); $("npw").focus(); };
 $("refresh").onclick = () => load();
 $("filter").onchange = () => load();
 
