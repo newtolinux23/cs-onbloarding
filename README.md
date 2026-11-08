@@ -1,7 +1,8 @@
-# C & S Delivery – New Hire Paperwork
+# C & S Delivery – New Hire Paperwork (retired)
 
-- `index.html` – form new hires fill out (Direct Deposit, W-4, I-9 Section 1)
-- `hr.html` – HR login to review submissions and download filled PDFs
-- `packet-template.pdf` – fillable PDF template used for downloads
+This site now only forwards to the hiring form inside **Terminal Ops**:
 
-Submissions are stored in Supabase (table `hr_enrollments`); only HR admins can read them.
+- `index.html` → `https://terminal-ops.netlify.app/onboarding/?join=…` (new hire form)
+- `hr.html` → `https://terminal-ops.netlify.app/` (Hiring & HR tab)
+
+Submissions are stored in the Terminal Ops Supabase project only.
